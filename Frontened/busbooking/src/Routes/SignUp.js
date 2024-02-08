@@ -2,6 +2,7 @@
 import { useState } from "react";
 import axios from "axios";
 // import { Toast } from "bootstrap";
+import "../styles/SignupStyles.css";
 
 const SignUp=()=>{
 
@@ -37,15 +38,15 @@ const SignUp=()=>{
       // navigate('/login');
     }
     catch(error){
-        if (error.response.status === 404) {
-            // // toast.error(`${error.response.data}`, {
-            //     position: toast.POSITION.TOP_CENTER
-            // });
-        }
+        // if (error.response.status === 404) {
+        //     // // toast.error(`${error.response.data}`, {
+        //     //     position: toast.POSITION.TOP_CENTER
+        //     // });
+        // }
     }
   }
         
-    return <div>
+    return <div className="signup">
         <h1>SignUp Here</h1>
         <form onSubmit={e => onSubmit(e)}>
 
@@ -72,12 +73,12 @@ const SignUp=()=>{
         <div >
            <label htmlFor="phoneNumber">phoneNumber: </label>
             <br />
-          <input type='phoneNumber' placeholder='phoneNumber' name='phoneNumber' value={phoneNumber} onChange={e => onChange(e)} required />
+          <input type='text' placeholder='phoneNumber' name='phoneNumber' value={phoneNumber} onChange={e => onChange(e)} required />
         </div>
         <div >
            <label htmlFor="role">role: </label>
             <br />
-          <input type='role' placeholder='role' name='role' value={role} onChange={e => onChange(e)} required />
+          <input type='text' placeholder='role' name='role' value={role} onChange={e => onChange(e)} required />
         </div>
        <div><input type='submit' className='add-flight-form button' value='Register' /></div>
         </form>

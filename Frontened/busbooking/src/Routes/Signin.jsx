@@ -1,64 +1,138 @@
-import React from 'react';
-// import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  MDBIcon
+import React, { useState,useEffect,  useContext } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { publicRequest, userRequest } from "../Constants";
+
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { UserContext } from '../App';
+
+function SignIn() {
+
+     const { state, dispatch } = useContext(UserContext)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    const location= useLocation();
+    const BASE_URL ="http://localhost:8080"
+    console.log(sessionStorage.getItem("fid"));
+    const handleSignup=()=>{
+        navigate('/register')
+    }
+
+    if (sessionStorage.getItem("jwtToken") && sessionStorage.getItem('fid')){
+
+        sessionStorage.clear();
+    }
+
+    let selectedFlight;
+    if(sessionStorage.getItem("fid")){
+       
+   //selectedFlight=location.state.selectedFlight;
+
+    }
+
+    const handleSubmit = async (event) => {
+        const cred = {
+            email: email,
+            password: password
+        }
+        event.preventDefault();
+        try {
+            const response = await axios.post(BASE_URL + `/Signin`, cred);
+            const token = response.data.token;
+            const userId = response.data.userId;
+            const role = response.data.role;
+            const firstName = response.data.firstName;
+
+            const setAuthToken = (token) => {
+                if (token) {
+                   
+                    sessionStorage.setItem('jwtToken', token);
+                    sessionStorage.setItem('uid', userId)
+                    sessionStorage.setItem('role', role)
+                    sessionStorage.setItem('fname', firstName);
+
+                }
+            };
+
+            setAuthToken(token);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem("jwtToken")}`;
+
+            if (sessionStorage.getItem("jwtToken") && sessionStorage.getItem('fid')) {
+                //navigate('/selectseat', { state: { selectedFlight } });
+              
+                toast.success('Login Successful.', {
+                    position: toast.POSITION.TOP_CENTER
+                });
+                dispatch({type:"USER",payload:true})
+                navigate('/selectseat');
+            }
+            else if (sessionStorage.getItem('role') === "ROLE_USER") {
+                toast.success('Login Successful.', {
+                    position: toast.POSITION.TOP_CENTER
+                });
+                dispatch({ type: "USER", payload: true })
+                navigate('/');
+            }
+           else  if(sessionStorage.getItem("jwtToken") && sessionStorage.getItem("role")==="ROLE_ADMIN")
+            {
+                dispatch({ type: "ADMIN", payload: true })
+               
+                toast.success('Login Successful.', {
+                    position: toast.POSITION.TOP_CENTER
+                });
+                navigate(`/admin`);
+            }
+        } catch (error) {
+            if (error.response.status === 404) {
+                toast.error('Invalid Credentials.', {
+                    position: toast.POSITION.TOP_CENTER
+                });
+            }
+        }
+    };
+
+    return (
+        <div className='middleContent'>
+            <div className="container">
+                <div className="container-fluid bg-light py-5">
+                    <div className="row justify-content-center align-items-center">
+                        <div className="col-md-6 col-lg-4 bg-white rounded shadow p-4">
+                            <div style={{justifyContent:'center'}}>
+                            <h2 className="text-center">Login here</h2>
+                            <form onSubmit={handleSubmit} className="add-flight-form">
+                                <div>
+                                    <label htmlFor="email">Email:</label>
+                                    <input
+                                        className='form-control'
+                                        type="text"
+                                        placeholder='Enter your email'
+                                        id="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="password">Password:</label>
+                                    <input
+                                        className='form-control'
+                                        type="password"
+                                        placeholder='Enter password'
+                                        id="password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
+                                </div>
+                                <button type="submit" className="btn btn-primary btn-block">Sign In</button>
+                                <button onClick={handleSignup} className="btn btn-primary btn-block">Sign Up</button>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
-from 'mdb-react-ui-kit';
 
-function App() {
-  return (
-    <MDBContainer fluid>
-
-      <MDBRow className='d-flex justify-content-center align-items-center h-100'>
-        <MDBCol col='12'>
-
-          <MDBCard className='bg-dark text-white my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '400px'}}>
-            <MDBCardBody className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
-
-              <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
-              <p className="text-white-50 mb-5">Please enter your login and password!</p>
-
-              <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email address' id='formControlLg' type='email' size="lg"/>
-              <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg"/>
-
-              <p className="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-              <MDBBtn outline className='mx-2 px-5' color='white' size='lg'>
-                Login
-              </MDBBtn>
-
-              <div className='d-flex flex-row mt-3 mb-5'>
-                <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
-                  <MDBIcon fab icon='facebook-f' size="lg"/>
-                </MDBBtn>
-
-                <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
-                  <MDBIcon fab icon='twitter' size="lg"/>
-                </MDBBtn>
-
-                <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
-                  <MDBIcon fab icon='google' size="lg"/>
-                </MDBBtn>
-              </div>
-
-              <div>
-                <p className="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a></p>
-
-              </div>
-            </MDBCardBody>
-          </MDBCard>
-
-        </MDBCol>
-      </MDBRow>
-
-    </MDBContainer>
-  );
-}
-
-export default App;
+export default SignIn;

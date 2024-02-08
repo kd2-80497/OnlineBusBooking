@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import "../styles/NavbarStyles.css"
 import { MenuItems } from "./MenuItems";
 import { useState } from "react";
-// import { UserContext } from "../App";
-// import { useContext } from 'react';
+ import { UserContext } from "../App";
+import { useContext } from 'react';
 
 function Navbar() {
     // const { state, dispatch } = useContext(UserContext)
-    const [clicked, setClicked] = useState(false);
+     const [clicked, setClicked] = useState(false);
 
     function handleClick() {
         setClicked(!clicked);
