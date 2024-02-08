@@ -1,5 +1,8 @@
 
 import { useState } from "react";
+import axios from "axios";
+// import { Toast } from "bootstrap";
+
 const SignUp=()=>{
 
     const [formData, setFormData] = useState({
@@ -16,6 +19,32 @@ const SignUp=()=>{
       const { email, password, firstName, lastName, phoneNumber, role } = formData;
     
       const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+
+      const onSubmit =async (event) =>{
+        event.preventDefault();
+        
+       
+      
+    
+    try{
+      const response = await axios.post("http://localhost:8080" +`/signup`, formData);
+      console.log(response.data)
+    //   // toast.success('Registration Successful.', {
+    //     position: toast.POSITION.TOP_CENTER
+    //  }
+  
+      // navigate('/login');
+    }
+    catch(error){
+        if (error.response.status === 404) {
+            // // toast.error(`${error.response.data}`, {
+            //     position: toast.POSITION.TOP_CENTER
+            // });
+        }
+    }
+  }
+        
     return <div>
         <h1>SignUp Here</h1>
         <form onSubmit={e => onSubmit(e)}>
@@ -50,7 +79,7 @@ const SignUp=()=>{
             <br />
           <input type='role' placeholder='role' name='role' value={role} onChange={e => onChange(e)} required />
         </div>
-       
+       <div><input type='submit' className='add-flight-form button' value='Register' /></div>
         </form>
     </div>
 }
