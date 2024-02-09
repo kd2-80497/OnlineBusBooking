@@ -9,6 +9,6 @@ public class Booking extends BaseEntity {
 	private String noOfSeats;
 	private int paymentId;
 	private String BookingDate;
-	private 
+ 
 
 }
