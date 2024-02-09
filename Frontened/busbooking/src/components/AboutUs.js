@@ -1,5 +1,5 @@
 import "../styles/AboutUsStyles.css";
-import image2 from '../assets/2.jpg';
+import image2 from '../assests/4.jpg';
 function AboutUs(){
     return (
         <div>

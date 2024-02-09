@@ -2,6 +2,7 @@
 import { useState } from "react";
 import axios from "axios";
 // import { Toast } from "bootstrap";
+import "../styles/SignupStyles.css";
 
 const SignUp=()=>{
 
@@ -21,31 +22,44 @@ const SignUp=()=>{
       const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
 
-      const onSubmit =async (event) =>{
-        event.preventDefault();
-        
+      const onSubmit =() =>{
        
+        
+       axios.post("http://localhost:8080/signup",this.formData).then((reply)=>{
+        var responseReceived = reply.data;
+        if(responseReceived.affectedRows!==undefined &&
+             responseReceived.affectedRows>0)
+             {
+                alert("User Registered sucessfully!!!");
+             }
+         else
+         {
+             alert("Something wrong!")
+         }
+
+       
+     })
       
     
-    try{
-      const response = await axios.post("http://localhost:8080" +`/signup`, formData);
-      console.log(response.data)
-    //   // toast.success('Registration Successful.', {
-    //     position: toast.POSITION.TOP_CENTER
-    //  }
+  //   try{
+  //     const response = await axios.post("http://localhost:8080" +`/signup`, formData);
+  //     console.log(response.data)
+  //   //   // toast.success('Registration Successful.', {
+  //   //     position: toast.POSITION.TOP_CENTER
+  //   //  }
   
-      // navigate('/login');
-    }
-    catch(error){
-        if (error.response.status === 404) {
-            // // toast.error(`${error.response.data}`, {
-            //     position: toast.POSITION.TOP_CENTER
-            // });
-        }
-    }
-  }
+  //     // navigate('/login');
+  //   }
+  //   catch(error){
+  //       // if (error.response.status === 404) {
+  //       //     // // toast.error(`${error.response.data}`, {
+  //       //     //     position: toast.POSITION.TOP_CENTER
+  //       //     // });
+  //       // }
+  //   }
+  // }
         
-    return <div>
+    return <div className="signup">
         <h1>SignUp Here</h1>
         <form onSubmit={e => onSubmit(e)}>
 
@@ -72,16 +86,16 @@ const SignUp=()=>{
         <div >
            <label htmlFor="phoneNumber">phoneNumber: </label>
             <br />
-          <input type='phoneNumber' placeholder='phoneNumber' name='phoneNumber' value={phoneNumber} onChange={e => onChange(e)} required />
+          <input type='text' placeholder='phoneNumber' name='phoneNumber' value={phoneNumber} onChange={e => onChange(e)} required />
         </div>
         <div >
            <label htmlFor="role">role: </label>
             <br />
-          <input type='role' placeholder='role' name='role' value={role} onChange={e => onChange(e)} required />
+          <input type='text' placeholder='role' name='role' value={role} onChange={e => onChange(e)} required />
         </div>
-       <div><input type='submit' className='add-flight-form button' value='Register' /></div>
+       <div><input type='submit' className='submit-container ' value='Register' /></div>
         </form>
     </div>
 }
-
+}
 export default SignUp;
