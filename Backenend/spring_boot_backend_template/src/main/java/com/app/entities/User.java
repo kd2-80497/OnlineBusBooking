@@ -28,7 +28,8 @@ import lombok.ToString;
 
 public class User extends BaseEntity {
 	
-	@Column(length=30)
+
+
 	private String firstName;
 	@Column(length=30)
 	private String lastName;
