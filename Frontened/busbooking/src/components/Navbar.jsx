@@ -25,7 +25,7 @@ function Navbar() {
         else {
             return (
                 <>
-                    <Link to="/SignUp">
+                    <Link to="/signup">
                         <button>Register</button>
                     </Link>
                     <Link to="/Signin">

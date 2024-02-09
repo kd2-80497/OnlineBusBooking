@@ -22,29 +22,42 @@ const SignUp=()=>{
       const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
 
-      const onSubmit =async (event) =>{
-        event.preventDefault();
-        
+      const onSubmit =() =>{
        
+        
+       axios.post("http://localhost:8080/signup",this.formData).then((reply)=>{
+        var responseReceived = reply.data;
+        if(responseReceived.affectedRows!==undefined &&
+             responseReceived.affectedRows>0)
+             {
+                alert("User Registered sucessfully!!!");
+             }
+         else
+         {
+             alert("Something wrong!")
+         }
+
+       
+     })
       
     
-    try{
-      const response = await axios.post("http://localhost:8080" +`/signup`, formData);
-      console.log(response.data)
-    //   // toast.success('Registration Successful.', {
-    //     position: toast.POSITION.TOP_CENTER
-    //  }
+  //   try{
+  //     const response = await axios.post("http://localhost:8080" +`/signup`, formData);
+  //     console.log(response.data)
+  //   //   // toast.success('Registration Successful.', {
+  //   //     position: toast.POSITION.TOP_CENTER
+  //   //  }
   
-      // navigate('/login');
-    }
-    catch(error){
-        // if (error.response.status === 404) {
-        //     // // toast.error(`${error.response.data}`, {
-        //     //     position: toast.POSITION.TOP_CENTER
-        //     // });
-        // }
-    }
-  }
+  //     // navigate('/login');
+  //   }
+  //   catch(error){
+  //       // if (error.response.status === 404) {
+  //       //     // // toast.error(`${error.response.data}`, {
+  //       //     //     position: toast.POSITION.TOP_CENTER
+  //       //     // });
+  //       // }
+  //   }
+  // }
         
     return <div className="signup">
         <h1>SignUp Here</h1>
@@ -80,9 +93,9 @@ const SignUp=()=>{
             <br />
           <input type='text' placeholder='role' name='role' value={role} onChange={e => onChange(e)} required />
         </div>
-       <div><input type='submit' className='add-flight-form button' value='Register' /></div>
+       <div><input type='submit' className='submit-container ' value='Register' /></div>
         </form>
     </div>
 }
-
+}
 export default SignUp;
