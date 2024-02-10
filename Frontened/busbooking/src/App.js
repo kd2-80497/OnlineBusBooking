@@ -11,6 +11,7 @@ import Contact from './Routes/Contact';
 import AboutUs from './components/AboutUs';
 import { createContext, useReducer } from "react";
 import { initialState, reducer } from "./reducer/UseReducer";
+import AddUsers from './Routes/AddUsers';
 
 export const UserContext = createContext();
 
@@ -21,8 +22,9 @@ function App() {
     <Routes>
     {/* <Route path="*" element={<NotFoundPage />} /> */}
           <Route path="/" element={<Home />} />
-      <Route path='/signup ' element={<SignUp/>}></Route>
+      <Route path='/signup' element={<SignUp/>}></Route>
       <Route path='/signin' element={<Signin/>}></Route>
+      <Route path='/addUsers' element={<AddUsers/>}></Route>
 
       <Route path='/contact' element={<Contact/>}></Route>
 
