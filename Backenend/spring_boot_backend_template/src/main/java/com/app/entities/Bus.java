@@ -2,9 +2,16 @@ package com.app.entities;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -43,6 +50,10 @@ public class Bus extends BaseEntity {
 	
 	@Column(name="available_seats")
 	private int availableSeats;
+	
+    @ElementCollection
+    @CollectionTable(name="passengers_list",joinColumns = @JoinColumn(name="bus_id"))
+	private List<Passenger> passengerList = new ArrayList<Passenger>();
 
 	public Bus(String busNo, int capacity, String source, String destination, LocalDate travelDate,
 			LocalTime departureTime, LocalTime arrivalTime, double fare, int availableSeats) {
@@ -58,7 +69,17 @@ public class Bus extends BaseEntity {
 		this.availableSeats = availableSeats;
 	}
 	
-
 	
+//	public void addPassenger(Passenger p) {
+//		passengerList.add(p);
+//		p.setBus(this);
+//		
+//	}
+//	
+//	public void removePassenger(Passenger p) {
+//		passengerList.remove(p);
+//		p.setBus(null);
+//		
+//	}
 	
 }
