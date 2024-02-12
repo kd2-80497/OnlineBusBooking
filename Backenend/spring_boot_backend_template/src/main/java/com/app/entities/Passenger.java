@@ -41,7 +41,7 @@ public class Passenger extends BaseEntity {
 	@JoinColumn(name="booking_id")
 	private Booking booking;
 	
-	public Passenger(String firstName, String lastName, String gender, int age, int seatNumber) {
+	public Passenger(String firstName, String lastName, String gender, int age,int seatNumber) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;

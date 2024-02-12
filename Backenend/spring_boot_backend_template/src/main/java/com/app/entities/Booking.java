@@ -1,6 +1,9 @@
 package com.app.entities;
 
+
+
 import java.time.LocalDate;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
