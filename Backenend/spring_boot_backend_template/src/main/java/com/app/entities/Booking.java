@@ -1,19 +1,9 @@
 package com.app.entities;
 
-<<<<<<< HEAD
-public class Booking extends BaseEntity {
-	
-	private int bookingId;
-	private int passengerId;
-	private String source;
-	private String destination;
-	private String noOfSeats;
-	private int paymentId;
-	private String BookingDate;
 
-=======
+
 import java.time.LocalDate;
->>>>>>> main
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
