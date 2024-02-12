@@ -34,10 +34,5 @@ public class Cancellation extends BaseEntity{
 		this.cancelDate = cancelDate;
 	}
 	
-	
-	
-	
-	
-	
 
 }
