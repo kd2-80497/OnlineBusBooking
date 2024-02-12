@@ -1,5 +1,7 @@
 package com.app.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,13 +24,16 @@ public class Payment  extends BaseEntity{
 
 	@Column(name="transaction_no" , unique = true,nullable = false)
 	private String transactionNo;
+	
+	
 	@Column(name="payment_status")
-	private String paymentStatus;
+	private boolean paymentStatus;
+	
 	@Column(name="payment_date")
-	private String paymentDate;
+	private LocalDate paymentDate;
 	
 	@Column(name="total_payment")
-	private double totalPayment;
+	private double totalPayment; 
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="booking_id")
@@ -38,7 +43,7 @@ public class Payment  extends BaseEntity{
 	@JoinColumn(name="user_id")
 	private User user;
 
-	public Payment(String transactionNo, String paymentStatus, String paymentDate, double totalPayment) {
+	public Payment(String transactionNo, boolean paymentStatus, LocalDate paymentDate, double totalPayment) {
 		super();
 		this.transactionNo = transactionNo;
 		this.paymentStatus = paymentStatus;
