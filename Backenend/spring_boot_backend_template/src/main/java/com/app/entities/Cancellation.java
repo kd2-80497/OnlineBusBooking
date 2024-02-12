@@ -24,7 +24,7 @@ public class Cancellation extends BaseEntity{
 	private LocalDate  cancelDate;
 	
 	@OneToOne
-	@JoinColumn(name="bokking_id")
+	@JoinColumn(name="booking_id")
 	private Booking booking;
 	
 	public Cancellation(String refoundAmount, String reason, LocalDate cancelDate) {
