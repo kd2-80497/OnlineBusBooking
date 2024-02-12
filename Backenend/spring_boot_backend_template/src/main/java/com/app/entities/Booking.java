@@ -1,7 +1,10 @@
 package com.app.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -27,11 +31,11 @@ public class Booking  extends BaseEntity{
 	private int noOfSeats;
 	
 	@Column(name="booking_status")
-	private String bookingStatus;
+	private boolean bookingStatus;
 	
 	
 	@Column(name="payment_status")
-	private String paymentStatus;
+	private boolean paymentStatus;
 	
 	@Column(name="booking_date")
 	private LocalDate bookingDate;
@@ -52,8 +56,10 @@ public class Booking  extends BaseEntity{
 	@JoinColumn(name="payment_id")
 	private Payment payment; 
 
+	@OneToMany(mappedBy = "booking",cascade = CascadeType.ALL,orphanRemoval = true)
+	private List<Passenger> passengerList= new ArrayList<Passenger>();
 
-	public Booking(int noOfSeats, String bookingStatus, String paymentStatus, LocalDate bookingDate, BusType type) {
+	public Booking(int noOfSeats, boolean bookingStatus, boolean paymentStatus, LocalDate bookingDate, BusType type) {
 		super();
 		this.noOfSeats = noOfSeats;
 		this.bookingStatus = bookingStatus;
@@ -63,4 +69,15 @@ public class Booking  extends BaseEntity{
 	}
 
 	
+	public void addPassenger(Passenger p) {
+		passengerList.add(p);
+		p.setBooking(this);
+		
+	}
+	
+	public void removePassenger(Passenger p) {
+		passengerList.remove(p);
+		p.setBooking(null);
+		
+	}
 }
