@@ -1,16 +1,12 @@
 package com.app.dao;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.app.entities.Bus;
-import com.app.entities.User;
-public interface BusDao extends JpaRepository<Bus, Long> {
+
+public interface BusDao extends JpaRepository<Bus, Long>{
+
+	Bus findBySourceAndDestination(String source, String destination);
 
 	
-	Optional<Bus> findBySourceAndDestination(String src, String des);
 }
-
-
-
