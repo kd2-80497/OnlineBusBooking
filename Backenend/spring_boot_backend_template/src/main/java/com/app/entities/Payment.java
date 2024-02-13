@@ -12,29 +12,33 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name="payment")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class Payment  extends BaseEntity{
 
 	@Column(name="transaction_no" , unique = true,nullable = false)
 	private String transactionNo;
+	
 	@Column(name="payment_status")
 	private String paymentStatus;
+	
 	@Column(name="payment_date")
 	private String paymentDate;
 	
 	@Column(name="total_payment")
 	private double totalPayment;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="booking_id")
 	private Booking booking;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private User user;
 

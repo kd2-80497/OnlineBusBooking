@@ -48,13 +48,16 @@ package com.app.controller;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,8 +66,12 @@ import com.app.dto.AddPasDTO;
 import com.app.dto.ApiResponse;
 //import com.app.dto.ApiResponse;
 import com.app.dto.PasRespDTO;
+import com.app.dto.PaymentReqDTO;
+import com.app.dto.PaymentRespDTO;
 import com.app.entities.Passenger;
+import com.app.entities.Payment;
 import com.app.service.PassengerService;
+import com.app.service.PaymentService;
 
 @RestController
 @RequestMapping("/passenger")
@@ -73,6 +80,10 @@ public class PassengerController {
 	// dep :
 	@Autowired // (required = true)
 	private PassengerService pasService;
+	
+	@Autowired
+    private  PaymentService paymentService;
+
 
 	public PassengerController() {
 		System.out.println("in ctor of " + getClass());
@@ -91,7 +102,9 @@ public class PassengerController {
 		System.out.println("in add emp " + dto);
 		return pasService.addPasDetails(dto);
 	}
-
+	
+	
+	
 	// URL : http://localhost:8080/employees/empId
 	// Method : GET
 	// resp : detached pas or exc
@@ -108,5 +121,35 @@ public class PassengerController {
 		System.out.println("in del emp dtls " + pasId);
 		return new ApiResponse(pasService.deletePassengerDetails(pasId));
 	}
+	
+//  http://localhost:8080/booking/payment/paymentId
+	 //Method : post
+	//pathvariable :paymentId
+	//payload: booking_id,amount,trans_dateTime,trans_id,status
+		// resp : detached pas or exc  
+	
+	// URL : http://localhost:8080/passenger/bus/bookbus/payment
+		// Method : POST
+		// req params : in Body
+		// paymentId,amount, bookingId, transaction_id,paymentStatus,paymentDateAndTime,
+		// paymentType;
+		// resp : (booking id with other details)
+	@PutMapping("/booking/cancelBooking/{bookingid}")
+	public ResponseEntity<?> cancelBooking(@NotNull @PathVariable Long bookingid) 
+	{
+		return   ResponseEntity.ok(paymentService.cancelBooking(bookingid));	
+	}
+	
+	
+	
+	
+	 @GetMapping("/booking/payment/{paymentId}")
+	    public ResponseEntity<PaymentRespDTO> getPaymentById(@PathVariable Long paymentId) {
+	    	System.out.println("in getpayment");
+	    	
+	    	PaymentRespDTO paymentRespDTO=	paymentService.getPaymentById(paymentId);
+	    	
+	        return ResponseEntity.ok(paymentRespDTO);
+	    }
 }
 
