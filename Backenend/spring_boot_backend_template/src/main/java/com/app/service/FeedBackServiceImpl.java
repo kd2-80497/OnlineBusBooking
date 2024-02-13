@@ -27,7 +27,7 @@ public class FeedBackServiceImpl implements FeedBackService {
 
 	@Autowired
 	private BusDao busDao;
-	
+
 	@Autowired
 	private PassengerDao passengerDao;
 	@Autowired
@@ -39,12 +39,15 @@ public class FeedBackServiceImpl implements FeedBackService {
 
 		FeedBack feedback = mapper.map(dto, FeedBack.class);
 		Bus bus = busDao.findById(dto.getBusid()).orElseThrow();
-		 Passenger passenger =
-		 passengerDao.findById(dto.getPassengerid()).orElseThrow();
+		Passenger passenger = passengerDao.findById(dto.getPassengerid()).orElseThrow();
 		feedback.setBus(bus);
-		 feedback.setPassenger(passenger);
+		feedback.setPassenger(passenger);
 		FeedBack persistenceFeedBack = feedBackDao.save(feedback);
-		return mapper.map(persistenceFeedBack, FeedbackDTO.class);
+		FeedbackDTO feedBackDto=new FeedbackDTO();
+		feedBackDto.setBusid(persistenceFeedBack.getBus().getId());
+		feedBackDto.setPassengerid(persistenceFeedBack.getPassenger().getId());
+		feedBackDto.setFeedBack(persistenceFeedBack.getFeedBack());
+		return feedBackDto;
 	}
 
 	@Override

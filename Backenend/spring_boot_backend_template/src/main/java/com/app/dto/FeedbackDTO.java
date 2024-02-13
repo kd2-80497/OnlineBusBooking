@@ -10,18 +10,18 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
 @Getter
 @Setter
 @ToString
 public class FeedbackDTO {
-	@JsonProperty(access = Access.READ_ONLY)
-	private Long Id;
-//	@NotBlank
-	 private String feedBack;
+//	@JsonProperty(access = Access.READ_ONLY)
+//	private Long Id;
+	@NotBlank
+	private String feedBack;
 	@NotNull
-	    private Long passengerid;
-	//@NotNull
-	    private Long busid;
-
+	private Long passengerid;
+	@NotNull
+	private Long busid;
 
 }
