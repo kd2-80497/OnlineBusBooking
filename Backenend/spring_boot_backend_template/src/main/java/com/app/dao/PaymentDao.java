@@ -7,4 +7,5 @@ import com.app.entities.Payment;
 
 public interface PaymentDao extends JpaRepository<Payment, Long> {
 
+
 }

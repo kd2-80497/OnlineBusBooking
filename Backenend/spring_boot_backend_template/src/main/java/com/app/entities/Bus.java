@@ -56,6 +56,9 @@ public class Bus extends BaseEntity {
     @CollectionTable(name="passengers_list",joinColumns = @JoinColumn(name="bus_id"))
 	private List<Passenger> passengerList = new ArrayList<Passenger>();
 
+
+    
+    
 	public Bus(String busNo, int capacity, String source, String destination, LocalDate travelDate,
 			LocalDateTime departureTime, LocalDateTime arrivalTime, double fare, int availableSeats) {
 		super();

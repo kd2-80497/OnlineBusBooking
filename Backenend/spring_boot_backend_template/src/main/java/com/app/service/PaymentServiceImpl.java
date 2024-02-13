@@ -1,13 +1,30 @@
 package com.app.service;
+
 import java.util.List;
 import java.util.Optional;
 
 import javax.validation.constraints.NotNull;
 
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.app.dao.BookingDao;
+import com.app.dao.PaymentDao;
+import com.app.dto.ApiResponse;
+import com.app.dto.PaymentDto;
+import com.app.entities.Booking;
+import com.app.entities.Payment;
+
+import custom_exceptions.ResourceNotFoundException;
+import java.time.LocalDate;
+
+import javax.validation.Valid;
+
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.BookingDao;
@@ -26,8 +43,10 @@ public class PaymentServiceImpl implements PaymentService{
     private BookingDao bookingDao;
     @Autowired
 	private ModelMapper mapper;
+	@Autowired
+	private PaymentDao paymentDao;
 
-    @Autowired
+  
     public PaymentServiceImpl(PaymentDao paymentRepository) {
         this.paymentRepository = paymentRepository;
     }
@@ -70,5 +89,36 @@ public class PaymentServiceImpl implements PaymentService{
 			return "Booking Cancelled Successfully " + cancelledBooking;
 		return "Booking Cant be Cancelled";
 	}
+
+
+
+
+
+
+
+	
+	
+	@Override
+	public boolean isPaymentSucessful(Long paymentid) {
+		Payment p = paymentDao.findById(paymentid).orElseThrow(()->new ResourceNotFoundException("Invalid id"));
+	if(p.isPaymentStatus()) {
+		return true;
+	}
+		return false;
+	}
+
+// 	@Override 
+// 	public ApiResponse addNewPayment(@Valid PaymentDto dto) {
+	
+// 		Payment p = paymentDao.save(mapper.map(dto, Payment.class));
+// 		p.setPaymentDate(LocalDate.now());
+// 		p.setPaymentStatus(true);
+// 		Booking booking = bookingDao.findById(dto.getBookingid()).orElseThrow();
+// 		p.setBooking(booking);
+// 		return new ApiResponse("Payment Done ");
+// 	}
+	
+	
+	
 
 }

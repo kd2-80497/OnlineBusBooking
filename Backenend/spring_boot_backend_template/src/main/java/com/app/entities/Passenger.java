@@ -37,7 +37,7 @@ public class Passenger extends BaseEntity {
 	
 	
 	
-	@OneToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="booking_id")
 	private Booking booking;
 	
