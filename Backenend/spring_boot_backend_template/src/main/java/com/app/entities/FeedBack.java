@@ -16,24 +16,20 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FeedBack extends BaseEntity {
-	@Column(length=30)
+	@Column(length = 30)
 	private String feedBack;
-	
+
 	@ManyToOne
-	@JoinColumn(name="passenger_id")
+	@JoinColumn(name = "passenger_id")
 	private Passenger passenger;
-	
-	
+
 	@ManyToOne
-	@JoinColumn(name="bus_id")
-private Bus bus;
-	
+	@JoinColumn(name = "bus_id")
+	private Bus bus;
 
 	public FeedBack(String feedBack) {
 		super();
 		this.feedBack = feedBack;
 	}
-	
-	
 
 }
