@@ -49,7 +49,7 @@ public class Booking  extends BaseEntity{
 	
 	@Enumerated(EnumType.STRING) // col : varchar => enum constant name
 	@Column(length = 30)
-	private BusType type;
+	private BusType busType;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
@@ -72,7 +72,7 @@ public class Booking  extends BaseEntity{
 		this.bookingStatus = bookingStatus;
 		this.paymentStatus = paymentStatus;
 		this.bookingDate = bookingDate;
-		this.type = type;
+		this.busType  = type;
 	}
 
 	

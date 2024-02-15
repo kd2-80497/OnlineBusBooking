@@ -45,6 +45,8 @@
 //}
 package com.app.controller;
 
+
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -66,8 +68,6 @@ import com.app.dto.AddPasDTO;
 import com.app.dto.ApiResponse;
 //import com.app.dto.ApiResponse;
 import com.app.dto.PasRespDTO;
-import com.app.dto.PaymentReqDTO;
-import com.app.dto.PaymentRespDTO;
 import com.app.entities.Passenger;
 import com.app.entities.Payment;
 import com.app.service.PassengerService;
@@ -91,14 +91,14 @@ public class PassengerController {
 
 	
 	@GetMapping
-	public List<Passenger> listAllEmps() {
+	public List<Passenger> listAllPassenger() {
 		System.out.println("in list all emps");
 		return pasService.getAllPassengers();
 	}
 
 	
 	@PostMapping
-	public PasRespDTO addPasDetails(@RequestBody @Valid AddPasDTO dto) {
+	public PasRespDTO addPassengerDetails(@RequestBody @Valid AddPasDTO dto) {
 		System.out.println("in add emp " + dto);
 		return pasService.addPasDetails(dto);
 	}
@@ -109,8 +109,9 @@ public class PassengerController {
 	// Method : GET
 	// resp : detached pas or exc
 	 @GetMapping("/{bookingId}")
-	    public Passenger getPassengerByBookingId(@PathVariable Long bookingId) {
-	        return pasService.getPassengerByBookingId(bookingId);
+	    public ResponseEntity<Passenger> getPassengerByBookingId(@PathVariable Long bookingId) {
+		 System.out.println("Passenger Controller : "+bookingId);
+	        return ResponseEntity.ok(pasService.getPassengerByBookingId(bookingId));                      
 	    }
 
 	// URL : http://localhost:8080/employees/empId
@@ -143,13 +144,13 @@ public class PassengerController {
 	
 	
 	
-	 @GetMapping("/booking/payment/{paymentId}")
-	    public ResponseEntity<PaymentRespDTO> getPaymentById(@PathVariable Long paymentId) {
-	    	System.out.println("in getpayment");
-	    	
-	    	PaymentRespDTO paymentRespDTO=	paymentService.getPaymentById(paymentId);
-	    	
-	        return ResponseEntity.ok(paymentRespDTO);
-	    }
+//	 @GetMapping("/booking/payment/{paymentId}")
+//	    public ResponseEntity<PaymentRespDTO> getPaymentById(@PathVariable Long paymentId) {
+//	    	System.out.println("in getpayment");
+//	    	
+//	    	PaymentRespDTO paymentRespDTO=	paymentService.getPaymentById(paymentId);
+//	    	
+//	        return ResponseEntity.ok(paymentRespDTO);
+//	    }
 }
 

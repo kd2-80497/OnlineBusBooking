@@ -26,10 +26,14 @@ public class BookingDto {
 	
 	
 	private Long busid;
+	
 	private int noOfSeats;
 	
-	private BusType type;
 	
+	private BusType busType;
+	 
 	private Long paymentid;
+	
+	private Long userid;
 	
 }

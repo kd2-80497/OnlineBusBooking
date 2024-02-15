@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.app.dao.BookingDao;
 import com.app.dao.BusDao;
 import com.app.dao.PaymentDao;
+import com.app.dao.UserDao;
 import com.app.dto.ApiResponse;
 import com.app.dto.BookingDto;
 import com.app.entities.Booking;
@@ -29,7 +30,8 @@ public class BookingServiceImpl implements BookingService {
 
 	@Autowired
 	private BusDao busDao;
-
+	@Autowired
+	private UserDao userDao;
 	@Autowired
 	private PaymentService paymentService;
 	@Autowired
@@ -43,7 +45,8 @@ public class BookingServiceImpl implements BookingService {
 		Bus bus = busDao.findById(dto.getBusid())
 				.orElseThrow(() -> new ResourceNotFoundException("Invalid Bus Id !!!!"));
 		if (dto.getNoOfSeats() <= bus.getAvailableSeats()) {
-      Payment payment = paymentdao.findById(dto.getPaymentid()).orElseThrow(()->new ResourceNotFoundException("Invalid id"));
+			Payment payment = paymentdao.findById(dto.getPaymentid())
+					.orElseThrow(() -> new ResourceNotFoundException("Invalid id"));
 			if (paymentService.isPaymentSucessful(dto.getPaymentid())) {
 				Booking book = bookingDao.save(mapper.map(dto, Booking.class));
 				book.setBookingDate(LocalDate.now());
@@ -51,7 +54,7 @@ public class BookingServiceImpl implements BookingService {
 				book.setPaymentStatus(true);
 				book.setBus(bus);
 				book.setPayment(payment);
-				
+				book.setUser(userDao.findById(dto.getUserid()).orElseThrow(() -> new ResourceNotFoundException("Invalid Bus Id !!!!")));
 
 			} else {
 
@@ -65,4 +68,7 @@ public class BookingServiceImpl implements BookingService {
 
 		return new ApiResponse("Booking Done ");
 	}
+	
+	
+	
 }

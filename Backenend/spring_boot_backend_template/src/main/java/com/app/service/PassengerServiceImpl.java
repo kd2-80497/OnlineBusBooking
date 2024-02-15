@@ -1,6 +1,7 @@
 package com.app.service;
 
 import com.app.custom_exceptions.ResourceNotFoundException;
+import com.app.dao.BookingDao;
 import com.app.dao.PassengerDao;
 import com.app.dto.AddPasDTO;
 import com.app.dto.PasRespDTO;
@@ -17,11 +18,14 @@ import javax.validation.Valid;
 
 @Service
 public class PassengerServiceImpl implements PassengerService {
-
-    private final PassengerDao passengerRepository;
+	@Autowired
+    private  PassengerDao passengerRepository;
     @Autowired
 	private ModelMapper mapper;
 
+    @Autowired 
+    private BookingDao bookingDao;
+    
     @Autowired
     public PassengerServiceImpl(PassengerDao passengerRepository) {
         this.passengerRepository = passengerRepository;
@@ -51,8 +55,11 @@ public class PassengerServiceImpl implements PassengerService {
 		// 2. map emp dto --> entity
 		Passenger emp = mapper.map(newPas, Passenger.class);
 		//dept.addEmployee(emp);
-		Passenger persistentEmp=passengerRepository.save(emp);// Since want to send generated emp id to the REST clnt : saved it explicitly!
-		return mapper.map(persistentEmp, PasRespDTO.class);
+		Passenger persistentPassenger=passengerRepository.save(emp);// Since want to send generated emp id to the REST clnt : saved it explicitly!
+		
+		persistentPassenger.setBooking(bookingDao.findById(newPas.getBookId()).orElseThrow(()->new ResourceNotFoundException("Invalid Booking id")));
+		return mapper.map(persistentPassenger, PasRespDTO.class);
+		
 	}
 
     @Override
@@ -69,8 +76,10 @@ public class PassengerServiceImpl implements PassengerService {
 //        passengerRepository.deleteById(id);
 //    }
     @Override
-    public Passenger getPassengerByBookingId(Long bookingId) {
-        return passengerRepository.findByBookingId(bookingId);
+    public  Passenger getPassengerByBookingId(Long bookingId) {
+    	System.out.println("Passenger Service : "+bookingId );
+        Passenger p=passengerRepository.findByBookingId(bookingId);
+        return p;
     }
 
 //	@Override

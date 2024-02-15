@@ -24,13 +24,19 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Payment  extends BaseEntity{
 
-	@Column(name="transaction_no" , unique = true,nullable = false)
-	private String transactionNo;
+//	@Column(name="transaction_no" , unique = true,nullable = false)
+//	private String transactionNo;
 	
-// <<<<<<< prerna
+// <<<<<<< 
 // 	@Column(name="payment_status")
 // 	private String paymentStatus;
 // =======
+	@Column(nullable = false)
+	private String source;
+	
+	@Column(nullable = false)
+	private String destination;
+	
 	
 	@Column(name="payment_status")
 	private boolean paymentStatus;
@@ -42,21 +48,24 @@ public class Payment  extends BaseEntity{
 	@Column(name="total_payment")
 	private double totalPayment; 
 	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="booking_id")
-	private Booking booking;
+//	@OneToOne(fetch=FetchType.EAGER)
+//	@JoinColumn(name="booking_id")
+//	private Booking booking;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private User user;
 
-	public Payment(String transactionNo, boolean paymentStatus, LocalDate paymentDate, double totalPayment) {
-		super();
-		this.transactionNo = transactionNo;
-		this.paymentStatus = paymentStatus;
-		this.paymentDate = paymentDate;
-		this.totalPayment = totalPayment;
-	}
+public Payment(String source, String destination, boolean paymentStatus, LocalDate paymentDate, double totalPayment) {
+	super();
+	this.source = source;
+	this.destination = destination;
+	this.paymentStatus = paymentStatus;
+	this.paymentDate = paymentDate;
+	this.totalPayment = totalPayment;
+}
+
+
 	
 	
 }
