@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService {
 		
 		
 		User user = userDao.save(mapper.map(dto,User.class));
+		user.setRole("customer");
 		return new SignUpResponse("registration sucessfully");
 	}
 
