@@ -1,10 +1,13 @@
 package com.app.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.app.entities.Passenger;
 
 public interface PassengerDao extends JpaRepository<Passenger, Long>{
-	 Passenger findByBookingId(Long bookingId);
+	@Query("select p from Passenger p where p.booking=?1")
+	Passenger findByBookingId(Long bookingId);
 }

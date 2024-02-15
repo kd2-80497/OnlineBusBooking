@@ -1,29 +1,31 @@
 
-//package com.app.controller;
-//
-//
-//	
-//	import org.springframework.beans.factory.annotation.Autowired;
-//	import org.springframework.http.HttpStatus;
-//	import org.springframework.http.ResponseEntity;
-//	import org.springframework.web.bind.annotation.*;
-//
-//import com.app.entities.Payment;
-//import com.app.service.PaymentService;
-//
-//import java.util.List;
-//
-//	@RestController
-//	@RequestMapping("/payments")
-//	public class PaymentController {
-//		@Autowired
-//	    private final PaymentService paymentService;
-//
-//	    @Autowired
-//	    public PaymentController(PaymentService paymentService) {
-//	        this.paymentService = paymentService;
-//	    }
-//
+package com.app.controller;
+
+
+	
+	import org.springframework.beans.factory.annotation.Autowired;
+	import org.springframework.http.HttpStatus;
+	import org.springframework.http.ResponseEntity;
+	import org.springframework.web.bind.annotation.*;
+
+import com.app.dto.ApiResponse;
+import com.app.dto.PaymentDto;
+import com.app.entities.Payment;
+import com.app.service.PaymentService;
+
+import java.util.List;
+
+	@RestController
+	@RequestMapping("/payments")
+	public class PaymentController {
+		@Autowired
+	    private final PaymentService paymentService;
+
+	    @Autowired
+	    public PaymentController(PaymentService paymentService) {
+	        this.paymentService = paymentService;
+	    }
+
 //	    @GetMapping("/{paymentId}")
 //	    public ResponseEntity<Payment> getPaymentById(@PathVariable Long paymentId) {
 //	    	System.out.println("in getpayment");
@@ -31,58 +33,67 @@
 //	        //return ResponseEntity.ok(payment);
 //	    	return null;
 //	    }
-//
+	    
+	    
+	    @PostMapping
+	    public  ApiResponse addPayment(@RequestBody PaymentDto dto){
+	    	System.out.println("in add payment");
+	    	
+	    	return paymentService.addPayment(dto);
+	    }
+	}
+
 //	    @GetMapping
 //	    public ResponseEntity<List<Payment>> getAllPayments() {
 //	        List<Payment> payments = paymentService.getAllPayments();
 //	        return ResponseEntity.ok(payments);
 //	    }
-//
+
 //	    @PostMapping
 //	    public ResponseEntity<Payment> createPayment(@RequestBody Payment payment) {
 //	        Payment savedPayment = paymentService.savePayment(payment);
 //	        return new ResponseEntity<>(savedPayment, HttpStatus.CREATED);
 //	    }
-//
+
 //	    @DeleteMapping("/{paymentId}")
 //	    public ResponseEntity<Void> deletePayment(@PathVariable Long paymentId) {
 //	        paymentService.deletePayment(paymentId);
 //	        return ResponseEntity.noContent().build();
 //	    }
-//	}
-//
-
-package com.app.controller;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.app.dao.PaymentDao;
-import com.app.dto.BusDto;
-import com.app.dto.PaymentDto;
-import com.app.service.PaymentService;
-
-@RestController
-@RequestMapping("/payment")
-@CrossOrigin(origins="http://localhost:3000")
-public class PaymentController {
-
-	@Autowired
-	private PaymentService paymentService;
 	
-	//1.add Payment
-	//http://host:port/payment  , method = post
-	@PostMapping
-	public ResponseEntity<?> addNewPayment(@RequestBody @Valid PaymentDto dto){
-		System.out.println("in add Bus " + dto);
-		return ResponseEntity.status(HttpStatus.CREATED).body(paymentService.addNewPayment(dto));
-	}
-}
+
+
+//package com.app.controller;
+//
+//import javax.validation.Valid;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestBody;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RestController;
+//
+//import com.app.dao.PaymentDao;
+//import com.app.dto.BusDto;
+//import com.app.dto.PaymentDto;
+//import com.app.service.PaymentService;
+//
+//@RestController
+//@RequestMapping("/payment")
+//@CrossOrigin(origins="http://localhost:3000")
+//public class PaymentController {
+//
+//	@Autowired
+//	private PaymentService paymentService;
+//	
+//	//1.add Payment
+//	//http://host:port/payment  , method = post
+//	@PostMapping
+//	public ResponseEntity<?> addNewPayment(@RequestBody @Valid PaymentDto dto){
+//		System.out.println("in add Bus " + dto);
+//		return ResponseEntity.status(HttpStatus.CREATED).body(paymentService.addNewPayment(dto));
+//	}
+//}
