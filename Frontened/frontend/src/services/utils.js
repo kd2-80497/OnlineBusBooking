@@ -6,6 +6,7 @@ export function createError(error){
     return {status:'error',error}
 }
 
+
 export function createUrl(path){
 return `${SERVER_URL}/${path}`
 }

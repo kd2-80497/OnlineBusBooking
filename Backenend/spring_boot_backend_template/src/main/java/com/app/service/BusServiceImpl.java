@@ -1,5 +1,8 @@
 package com.app.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
@@ -72,4 +75,18 @@ public class BusServiceImpl implements BusService {
 	
 	
 	}
+
+	@Override
+	public List<BusDto> getAllBus() {
+	
+	List<Bus> buses =busdao.findAll();
+	
+		
+	return buses.stream().map(bus->mapper.map(bus, BusDto.class))
+            .collect(Collectors.toList());
+	}
+	
+//	public List<Bus> getAllBus(){
+//		return busdao.findAll();
+//	}
 }
