@@ -2,6 +2,7 @@ package com.app.entities;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
