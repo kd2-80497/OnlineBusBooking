@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import Booking from "./pages/Booking";
 function App() {
   return (
-    <div className="container">
+    <div className="container-fluid">
    <Routes>
     <Route  index element={<Signin/>}   />
     <Route  path='/' element={<Signin/>}   />

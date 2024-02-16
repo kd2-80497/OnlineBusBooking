@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.app.dto.BusDto;
+import com.app.entities.Bus;
 import com.app.service.BusService;
 
 @RestController
@@ -38,9 +41,24 @@ public class BusController {
 	}
 	
 	
+//	@GetMapping("/source")
+//	public List<String> getBusSource(){
+//		System.out.println("in get Bus by source ");
+//		return busService.getBusSource();
+//	}
 	
+	//2.get all bus
+		@GetMapping({"/source"})
+		public ResponseEntity<List<BusDto>> getAllBus(){
+			System.out.println("in get Bus " );
+			return ResponseEntity.ok(busService.getAllBus());
+		}
 	
-	
+//	@GetMapping({"/source"})
+//	public ResponseEntity<List<Bus>> getAllBusSource(){
+//		System.out.println("in get Bus " );
+//		return ResponseEntity.ok(busService.getAllBus());
+//	}
 	
 	//2.get all buses by id
 	@GetMapping("/{busId}")

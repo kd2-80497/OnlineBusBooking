@@ -30,7 +30,7 @@ const[PhoneNumber,setPhoneNumber]=useState('');
       else{
         const result = await signupUser(firstName,lastName,email,password,PhoneNumber)
         
-        if(result['status']!=='error'){
+        if(result['status']!='error'){
             toast.success('Successfully Registered The User')
             navigate('/')
         }
