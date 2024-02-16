@@ -75,7 +75,7 @@ import com.app.service.PaymentService;
 
 @RestController
 @RequestMapping("/passenger")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class PassengerController {
 	// dep :
 	@Autowired // (required = true)

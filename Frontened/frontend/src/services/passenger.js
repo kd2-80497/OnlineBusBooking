@@ -2,15 +2,16 @@ import axios from "axios";
 import { createError,createUrl } from "./utils";
 
 export  async function passenger(firstName,lastName,gender,age,seatNumber){
-
+var bookId=1;
 try{
-const url = createUrl('/passenger')
+const url = createUrl('passenger')
 const body = {
     firstName,
     lastName,
     gender,
     age,
-   seatNumber
+   seatNumber,
+   bookId,
     
     
 }
