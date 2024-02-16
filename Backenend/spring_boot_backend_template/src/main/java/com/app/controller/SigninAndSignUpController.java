@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.util.Random;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.SignUpRequest;
 import com.app.dto.SigninRequest;
+import com.app.entities.User;
 import com.app.service.UserService;
 
 @RestController
@@ -20,7 +23,7 @@ import com.app.service.UserService;
 public class  SigninAndSignUpController {
 	@Autowired
  private UserService userService;
-	
+	Random random = new Random(10000);
 	@PostMapping("/signin")
 	public ResponseEntity<?> signinUser(@RequestBody @Valid SigninRequest dto){
 		System.out.println("in auth user "+ dto);
@@ -32,5 +35,5 @@ public class  SigninAndSignUpController {
 		System.out.println("in auth user "+ dto);
 		return ResponseEntity.ok(userService.userRegistration(dto));
 	}
-	
+
 }

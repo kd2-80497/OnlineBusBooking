@@ -7,7 +7,9 @@ import com.app.entities.User;
 public interface UserDao extends JpaRepository<User, Long> {
 
 	
-	Optional<User> findByEmailAndPassword(String em, String pass);
+	User findByEmailAndPassword(String em, String pass);
+	public User findByEmail(String email);
+	
 }
 
 
