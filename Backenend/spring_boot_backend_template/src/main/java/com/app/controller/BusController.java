@@ -71,7 +71,7 @@ public class BusController {
 	//3.get  buses by source and destination
 	//http://host:port/bus  , method =get
 	@GetMapping
-	public ResponseEntity<?> getBusDetailsBySourceAndDestination(@RequestParam("source") String source,@RequestParam("destination") String destination  ){
+	public ResponseEntity<List<BusDto>> getBusDetailsBySourceAndDestination(@RequestParam("source") String source,@RequestParam("destination") String destination  ){
 		System.out.println("in get Bus by source and destination " + source + destination );
 		return ResponseEntity.ok(busService.getBusDetailsBySourceAndDestination(source,destination));
 	}
