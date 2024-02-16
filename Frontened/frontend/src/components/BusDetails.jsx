@@ -47,7 +47,7 @@ function BusDetails({ source, destination }) {
             </tr>
           </thead>
           <tbody>
-            {buses.map((bus,index) => {
+            {buses.map((bus) => {
               return (
                 <tr key={bus.id}>
                      <td>{bus.source}</td>
