@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+// import back from '../assests/back.jpg';
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { passenger } from "../services/passenger";
@@ -13,6 +13,7 @@ export function PassengerForm(){
     const[seatNumber,setSeatNumber]=useState('');
    // const navigate = useNavigate();
     const  handleSubmit=async()=>{
+      debugger;
         if (firstName.length === 0) {
             toast.warn('enter first name')
           } else if (lastName.length === 0) {
@@ -27,7 +28,7 @@ export function PassengerForm(){
           else{
             const result = await passenger(firstName,lastName,gender,age,seatNumber)
             
-            if(result['status']!=='error'){
+            if(result.status ==="success"){
                 toast.success("Passenger details added successfully")
               //  navigate('/')
             }
@@ -40,14 +41,18 @@ export function PassengerForm(){
   return (
     <>
    
-      <h1 className='title'>PassengerForm</h1>
+   <div className="container mt-5" >
+      <div className="card">
+      <img src="assests\back.jpg" className="card-img-top" alt="Bus Image" />
+        <div className="card-body">
+          <h1 className="card-title text-center mb-4">Passenger Details</h1>
       <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
         <div className='row'>
           <div className='col'></div>
           <div className='col'>
             <div className='form'>
               <div className='mb-3'>
-                <label htmlFor='firstName'>First Name</label>
+                <label htmlFor='firstName' className='form-label'>First Name</label>
                 <input
                   onChange={(e) => setFirstName(e.target.value)}
                   type='text'
@@ -55,7 +60,7 @@ export function PassengerForm(){
                 />
               </div>
               <div className='mb-3'>
-                <label htmlFor='lastName'>Last Name</label>
+                <label htmlFor='lastName' className='form-label'>Last Name</label>
                 <input
                   onChange={(e) => setLastName(e.target.value)}
                   type='text'
@@ -63,7 +68,7 @@ export function PassengerForm(){
                 />
               </div>
               <div className='mb-3'>
-                <label htmlFor='gender'>Gender</label>
+                <label htmlFor='gender' className='form-label'>Gender</label>
                 <select
                   onChange={(e) => setGender(e.target.value)}
                   className='form-select'
@@ -76,7 +81,7 @@ export function PassengerForm(){
                 </select>
               </div>
               <div className='mb-3'>
-                <label htmlFor='age'>Age</label>
+                <label htmlFor='age' className='form-label'>Age</label>
                 <input
                   onChange={(e) => setAge(e.target.value)}
                   type='number'
@@ -88,7 +93,7 @@ export function PassengerForm(){
                 />
               </div>
               <div className='mb-3'>
-                <label htmlFor='seatNumber'>Seat Number</label>
+                <label htmlFor='seatNumber' className='form-label'>Seat Number</label>
                 <input
                   onChange={(e) => setSeatNumber(e.target.value)}
                   type='number'
@@ -100,7 +105,7 @@ export function PassengerForm(){
                 {/* <div>
                   Already got an account? <Link to='/'>Sign in here</Link>
                 </div> */}
-                <button type='submit' className='btn btn-primary mt-2'>
+                <button type='submit'className='btn btn-primary mt-4'>
                   Add Passenger
                 </button>
               </div>
@@ -109,6 +114,9 @@ export function PassengerForm(){
           <div className='col'></div>
         </div>
       </form>
+      </div>
+      </div>
+      </div>
     </>
   );
 }
