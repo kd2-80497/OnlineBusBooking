@@ -19,8 +19,8 @@ import com.app.entities.User;
 @Transactional
 public class UserServiceImpl implements UserService {
 	
-	@Autowired
-	private OtpService otpservice;
+//	@Autowired
+//	private OtpService otpservice;
 	@Autowired
 	private UserDao userDao;
 	
@@ -51,13 +51,13 @@ public class UserServiceImpl implements UserService {
         return userDao.findByEmail(email);
     }
 
-    public String generateAndSendOTP(String email) {
-        User user = userDao.findByEmail(email);
-        if (user != null) {
-            String otp = otpservice.generateAndSendOTP(email);
-            return otp;
-        } else {
-            throw new RuntimeException("User not found");
-        }
-    }
+//    public String generateAndSendOTP(String email) {
+//        User user = userDao.findByEmail(email);
+//        if (user != null) {
+//            String otp = otpservice.generateAndSendOTP(email);
+//            return otp;
+//        } else {
+//            throw new RuntimeException("User not found");
+//        }
+//    }
 }

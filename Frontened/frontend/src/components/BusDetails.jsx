@@ -33,9 +33,32 @@ function BusDetails({ source, destination }) {
     return <p>Loading...</p>;
 
   }
-  const BookBus =()=>{
-    navigate('/booking')
+  const BookBus =(busId)=>{
+
+sessionStorage.setItem("busid",busId);
+console.log(sessionStorage.getItem("busid"));
+
+const selectedBus =  buses.find((bus)=>bus.id===busId);
+sessionStorage.setItem("selectedBus",JSON.stringify(selectedBus));
+console.log(selectedBus);
+navigate("/booking");
+// if (
+//   sessionStorage.getItem("role") === "customer" &&
+//   sessionStorage.getItem("jwtToken")
+// ) {
+  
+  // navigate("/booking");
+// } else {
+
+//   navigate("/login");
+// }
+    
   }
+
+
+
+
+
 
   return (
    
@@ -70,7 +93,7 @@ function BusDetails({ source, destination }) {
                     <button
                       className="btn btn-primary"
                       onClick={() => {
-                         BookBus(buses.id);
+                         BookBus(bus.id);
                       }}
                     >
                       Book

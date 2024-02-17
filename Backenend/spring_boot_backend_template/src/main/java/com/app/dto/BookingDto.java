@@ -32,7 +32,7 @@ public class BookingDto {
 	
 	private BusType busType;
 	 
-	private Long paymentid;
+//	private Long paymentid;
 	
 	private Long userid;
 	
