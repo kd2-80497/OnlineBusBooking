@@ -44,12 +44,13 @@ public class BusServiceImpl implements BusService {
 	}
 
 	@Override
-	public BusDto getBusDetailsBySourceAndDestination(String source, String destination) {
+	public List<BusDto> getBusDetailsBySourceAndDestination(String source, String destination) {
 		
-		Bus persistentBus = busdao.findBySourceAndDestination(source,destination);
+		List<Bus> buses = busdao.findBySourceAndDestination(source,destination);
 		
 		
-		return mapper.map(persistentBus, BusDto.class);
+		return buses.stream().map(bus->mapper.map(bus, BusDto.class))
+	            .collect(Collectors.toList());
 	}
 
 	@Override

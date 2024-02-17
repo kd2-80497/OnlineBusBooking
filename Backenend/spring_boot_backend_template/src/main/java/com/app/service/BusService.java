@@ -14,7 +14,7 @@ public interface BusService {
 
 	BusDto getBusDeails(Long busId);
 
-	BusDto getBusDetailsBySourceAndDestination(String source, String destination);
+	List<BusDto> getBusDetailsBySourceAndDestination(String source, String destination);
 
 	BusDto updateBus(Long busId, @Valid BusDto bus);
 
