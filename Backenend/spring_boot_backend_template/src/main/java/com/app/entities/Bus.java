@@ -11,6 +11,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -51,6 +52,8 @@ public class Bus extends BaseEntity {
 	
 	@Column(name="available_seats")
 	private int availableSeats;
+	
+	
 	
     @ElementCollection
     @CollectionTable(name="passengers_list",joinColumns = @JoinColumn(name="bus_id"))

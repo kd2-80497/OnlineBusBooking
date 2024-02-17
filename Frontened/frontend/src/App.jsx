@@ -11,7 +11,7 @@ import AboutUs from "./pages/AboutUs";
 import { PassengerForm } from "./pages/PassengerForm";
 function App() {
   return (
-    <div className="container">
+    <div className="container-fluid">
    <Routes>
     <Route  index element={<Signin/>}   />
     <Route  path='/' element={<Signin/>}   />
