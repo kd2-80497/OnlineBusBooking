@@ -1,6 +1,6 @@
 import { useState } from "react";
 //import axios from "axios";
-//import { initiatePayment } from '../services/user'
+import { initiatePayment } from '../services/user'
 function Payment() {
   const [source, setSource] = useState('');
   const [destination, setDestination] = useState('');
@@ -8,10 +8,28 @@ function Payment() {
   const [paymentDate, setPaymentDate] = useState('');
   const [totalPayment, setTotalPayment] = useState(0);
   
+
+// Create an object using the state variables
+const paymentObject = {
+  userid:1,
+  source: source,
+  destination: destination,
+  paymentStatus: paymentStatus,
+  // paymentDate: paymentDate,
+  totalPayment: totalPayment
+};
   const handleSubmit = (event) => {
-    debugger;
+
+    
+    // debugger;
     event.preventDefault();
-    console.log("Form submitted:", { source, destination, paymentStatus, paymentDate, totalPayment });
+    console.log("Form submitted:",paymentObject);
+    initiatePayment(paymentObject).then((response)=>{
+      console.log(response.data);
+    }).catch((err)=>{
+      console.log(err.data);
+      
+    })
   };
 
   return (

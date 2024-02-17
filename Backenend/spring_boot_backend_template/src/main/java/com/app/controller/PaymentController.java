@@ -17,7 +17,7 @@ import java.util.List;
 
 	@RestController
 	@RequestMapping("/payments")
-	@CrossOrigin(origins="http://localhost:3000")
+	@CrossOrigin(origins="*")
 	public class PaymentController {
 		@Autowired
 	    private PaymentService paymentService;
@@ -38,7 +38,7 @@ import java.util.List;
 	    
 	    @PostMapping("/initiate")
 	    public  PaymentDto addPayment(@RequestBody PaymentDto dto){
-	    	System.out.println("in add payment"+dto);
+	    	System.out.println("in add payment"+dto.toString());
 	    	
 	    	return paymentService.addPayment(dto);
 	    }

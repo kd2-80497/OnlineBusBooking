@@ -111,6 +111,7 @@ public class PaymentServiceImpl implements PaymentService{
 
 	@Override
 	public PaymentDto addPayment(PaymentDto dto) {
+		System.out.println("in add payment");
 		Payment p = paymentDao.save(mapper.map(dto, Payment.class));
 		p.setPaymentDate(LocalDate.now());
 		p.setPaymentStatus(true);

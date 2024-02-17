@@ -1,10 +1,18 @@
 
+
+import Navbar from "../components/Navbar";
+
 export function Booking(){
 
     return (<>
-    <h1 className='title'>Booking</h1>
-    
-    </>)
+        <Navbar/>
+        <div className="container">
+        <h1 className='title'>Booking</h1>
+        
+
+
+        </div>
+        </>)
 
 }
 

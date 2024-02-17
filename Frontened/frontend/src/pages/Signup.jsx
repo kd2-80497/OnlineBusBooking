@@ -14,24 +14,24 @@ const [confirmPassword, setConfirmPassword] = useState('')
 const[PhoneNumber,setPhoneNumber]=useState('');
    const navigate = useNavigate();
    const onSignup=async()=>{
-    if (firstName.length == 0) {
+    if (firstName.length === 0) {
         toast.warn('enter first name')
-      } else if (lastName.length == 0) {
+      } else if (lastName.length === 0) {
         toast.warn('enter last name')
-      } else if (email.length == 0  ) {
+      } else if (email.length === 0  ) {
         toast.warn('enter email')
-      } else if (password.length == 0) {
+      } else if (password.length === 0) {
         toast.warn('enter password')
-      } else if (confirmPassword.length == 0) {
+      } else if (confirmPassword.length === 0) {
         toast.warn('enter confirm password')
-      } else if (password != confirmPassword) {
+      } else if (password !== confirmPassword) {
         toast.warn('password does not match')
       }else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
         toast.error("Please enter valid Email");}
       else{
         const result = await signupUser(firstName,lastName,email,password,PhoneNumber)
         
-        if(result['status']!=='error'){
+        if(result['status']!='error'){
             toast.success('Successfully Registered The User')
             navigate('/')
         }

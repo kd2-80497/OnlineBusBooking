@@ -52,22 +52,33 @@ export async function signinUser(email, password) {
     }
   }
 
-  export async function initiatePayment(source, destination, paymentDate, totalPayment) {
+  // export async function initiatePayment(source, destination,totalPayment,paymentDate) {
+  //   try {
+  //     const url = createUrl('payments/initiate'); // Adjust the URL endpoint according to your server route
+  //     const body = {
+  //       source,
+  //       destination,
+  //       paymentDate,
+  //       totalPayment
+  //     };
+  //     const response = await axios.post(url, body);
+  //     return response.data;
+  //   } catch (ex) {
+  //     return createError(ex);
+  //   }
+  // }
+
+  export async function initiatePayment(data) {
     try {
       const url = createUrl('payments/initiate'); // Adjust the URL endpoint according to your server route
-      const body = {
-        source,
-        destination,
-        paymentDate,
-        totalPayment
-      };
+      const body = data;
       const response = await axios.post(url, body);
       return response.data;
     } catch (ex) {
       return createError(ex);
     }
   }
-
+ 
 
 
 
