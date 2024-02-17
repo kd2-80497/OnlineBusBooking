@@ -19,9 +19,10 @@ export function Signin() {
       const result = await signinUser(email, password)
       if (result['status'] == 'success') {
         // cache the token
-        const token = result['data']['token']
-        sessionStorage['token'] = token
-
+        // const token = result['data']['token']
+        //  sessionStorage['token'] = token
+        sessionStorage.setItem('userid',result.data.id );
+        sessionStorage.setItem('role',result.data.role );
         toast.success('Welcome to the busbooking ')
         navigate('/home')
       } else {
@@ -30,26 +31,26 @@ export function Signin() {
     }
   }
 
-  const onForgotPassword= async () => {
-    if (email.length == 0) {
-      toast.warn('enter email')
-    } else if (password.length == 0) {
-      toast.warn('enter password')
-    } else {
-      // make the api call
-      const result = await signinUser(email, password)
-      if (result['status'] == 'success') {
-        // cache the token
-        const token = result['data']['token']
-        sessionStorage['token'] = token
+  // const onForgotPassword= async () => {
+  //   if (email.length == 0) {
+  //     toast.warn('enter email')
+  //   } else if (password.length == 0) {
+  //     toast.warn('enter password')
+  //   } else {
+  //     // make the api call
+  //     const result = await signinUser(email, password)
+  //     if (result['status'] == 'success') {
+  //       // cache the token
+  //       const token = result['data']['token']
+  //       sessionStorage['token'] = token
 
-        toast.success('Welcome to the busbooking ')
-        navigate('/home')
-      } else {
-        toast.error(result['error'])
-      }
-    }
-  }
+  //       toast.success('Welcome to the busbooking ')
+  //       navigate('/home')
+  //     } else {
+  //       toast.error(result['error'])
+  //     }
+  //   }
+  // }
 
   return (
     <>
@@ -89,9 +90,9 @@ export function Signin() {
               <div>
                 Don't have an account? <Link to='/forgotpassword'>forgotpassword here</Link>
               </div>
-              <button onClick={onForgotPassword} className='btn btn-primary mt-2'>
+              {/* <button onClick={onForgotPassword} className='btn btn-primary mt-2'>
                 ForgotPassword
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
