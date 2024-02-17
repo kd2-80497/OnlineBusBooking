@@ -1,5 +1,8 @@
+
+
 import Navbar from "../components/Navbar";
 import SelectSeat from "./SelectSeat";
+
 export function Booking(){
 
     return (<>

@@ -1,6 +1,8 @@
+
 import Navbar from "../components/Navbar";
 import '../styles/HomeStyles.css';
 import { Link, useNavigate } from 'react-router-dom'
+
 export function Home(){
     const navigate = useNavigate();
     const handleClick = () => {

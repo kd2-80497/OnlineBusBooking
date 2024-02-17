@@ -17,14 +17,15 @@ import java.util.List;
 
 	@RestController
 	@RequestMapping("/payments")
+	@CrossOrigin(origins="*")
 	public class PaymentController {
 		@Autowired
-	    private final PaymentService paymentService;
+	    private PaymentService paymentService;
 
-	    @Autowired
-	    public PaymentController(PaymentService paymentService) {
-	        this.paymentService = paymentService;
-	    }
+//	    @Autowired
+//	    public PaymentController(PaymentService paymentService) {
+//	        this.paymentService = paymentService;
+//	    }
 
 //	    @GetMapping("/{paymentId}")
 //	    public ResponseEntity<Payment> getPaymentById(@PathVariable Long paymentId) {
@@ -35,9 +36,9 @@ import java.util.List;
 //	    }
 	    
 	    
-	    @PostMapping
-	    public  ApiResponse addPayment(@RequestBody PaymentDto dto){
-	    	System.out.println("in add payment");
+	    @PostMapping("/initiate")
+	    public  PaymentDto addPayment(@RequestBody PaymentDto dto){
+	    	System.out.println("in add payment"+dto.toString());
 	    	
 	    	return paymentService.addPayment(dto);
 	    }
