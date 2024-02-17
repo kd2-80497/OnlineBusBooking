@@ -1,3 +1,4 @@
+
 package com.app.controller;
 
 import javax.validation.Valid;
@@ -14,7 +15,9 @@ import com.app.service.FeedBackService;
 
 
 @RestController
+
 @RequestMapping("/feedback")
+@CrossOrigin(origins = "http://localhost:3000")
 public class FeedBackController {
 
     @Autowired
