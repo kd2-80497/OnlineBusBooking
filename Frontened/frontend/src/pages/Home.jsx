@@ -5,7 +5,7 @@ export function Home(){
     const navigate = useNavigate();
     const handleClick = () => {
         console.log('Button clicked!');
-        navigate('/booking')
+        navigate('/bus')
       };
 
     return (<>

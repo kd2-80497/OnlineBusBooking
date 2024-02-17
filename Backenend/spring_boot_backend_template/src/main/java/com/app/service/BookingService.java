@@ -2,11 +2,13 @@ package com.app.service;
 
 import javax.validation.Valid;
 
+import org.springframework.http.ResponseEntity;
+
 import com.app.dto.ApiResponse;
 import com.app.dto.BookingDto;
 
 public interface BookingService {
 
-	ApiResponse addNewBooking(@Valid BookingDto dto);
+	ResponseEntity<?> addNewBooking(@Valid BookingDto dto);
 
 }
