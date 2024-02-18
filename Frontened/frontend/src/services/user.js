@@ -99,3 +99,14 @@ export async function signinUser(email, password) {
 //     return createError(ex);
 //   }
 // }
+
+export async function feedBack(data) {
+  try {
+    const url = createUrl('/feedback'); // Adjust the URL endpoint according to your server route
+    const body = data;
+    const response = await axios.post(url, body);
+    return response.data;
+  } catch (ex) {
+    return createError(ex);
+  }
+}

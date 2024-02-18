@@ -47,6 +47,7 @@ public class FeedBackServiceImpl implements FeedBackService {
 		feedBackDto.setBusid(persistenceFeedBack.getBus().getId());
 		feedBackDto.setPassengerid(persistenceFeedBack.getPassenger().getId());
 		feedBackDto.setFeedBack(persistenceFeedBack.getFeedBack());
+		System.out.println(feedBackDto.getBusid());
 		return feedBackDto;
 	}
 
