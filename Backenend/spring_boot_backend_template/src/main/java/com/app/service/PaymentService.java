@@ -28,7 +28,7 @@ public interface PaymentService {
 //	ApiResponse addNewPayment(@Valid PaymentDto dto);
 		String cancelBooking(Long bookingid);
 
-		public ApiResponse addPayment(PaymentDto dto);
+		PaymentDto addPayment(PaymentDto dto);
 
 
 

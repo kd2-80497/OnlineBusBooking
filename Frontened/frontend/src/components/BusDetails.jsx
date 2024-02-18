@@ -1,18 +1,26 @@
 // BusDetails.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom'
+
+
 
 function BusDetails({ source, destination }) {
   const [buses, setBuses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBusDetails = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/bus?source=${source}&destination=${destination}`);
-        setBuses(response.data);
+      
+      // const busesArray = Object.values(response.data);
+       setBuses(response.data);
+      // setBuses(busesArray);
       } catch (error) {
         console.error('Error fetching data:', error);
+        setBuses([])
       } finally {
         setLoading(false);
       }
@@ -26,7 +34,7 @@ function BusDetails({ source, destination }) {
 
   }
   const BookBus =()=>{
-
+    navigate('/booking')
   }
 
   return (
@@ -47,7 +55,7 @@ function BusDetails({ source, destination }) {
             </tr>
           </thead>
           <tbody>
-            {buses.map((bus,index) => {
+            {buses.map((bus) => {
               return (
                 <tr key={bus.id}>
                      <td>{bus.source}</td>

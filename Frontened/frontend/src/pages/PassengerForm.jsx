@@ -13,7 +13,7 @@ export function PassengerForm(){
     const[seatNumber,setSeatNumber]=useState('');
    // const navigate = useNavigate();
     const  handleSubmit=async()=>{
-      debugger;
+      
         if (firstName.length === 0) {
             toast.warn('enter first name')
           } else if (lastName.length === 0) {
