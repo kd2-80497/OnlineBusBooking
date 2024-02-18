@@ -1,5 +1,8 @@
 package com.app.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
@@ -12,6 +15,7 @@ import com.app.dao.FeedBackDao;
 import com.app.dao.PassengerDao;
 import com.app.dto.ApiResponse;
 import com.app.dto.BusDto;
+import com.app.dto.FeedResDTO;
 import com.app.dto.FeedbackDTO;
 import com.app.entities.Bus;
 import com.app.entities.FeedBack;
@@ -76,6 +80,20 @@ public class FeedBackServiceImpl implements FeedBackService {
 		feedBackDao.delete(persistentFeedBack);
 		return new ApiResponse("Feedback Details of Feedback with ID " + persistentFeedBack.getId() + " deleted....");
 
+	}
+//	@Override
+//	public List<UserResponseDTO> getAllUsers() {
+//		
+//		return userDao.findAll().
+//				stream().
+//				map(use->mapper.map(use,UserResponseDTO.class)).collect(Collectors.toList());
+//	}
+	@Override
+	public List<FeedResDTO> getAllFeedback() {
+		return feedBackDao.findAll().
+				stream().
+				map(feed->mapper.map(feed,FeedResDTO.class)).
+				collect(Collectors.toList());
 	}
 
 }

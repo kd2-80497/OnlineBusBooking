@@ -1,6 +1,8 @@
 
 package com.app.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.app.dto.BusDto;
+import com.app.dto.FeedResDTO;
 import com.app.dto.FeedbackDTO;
+import com.app.dto.UserResponseDTO;
 import com.app.entities.FeedBack;
 import com.app.service.FeedBackService;
 
@@ -17,11 +21,16 @@ import com.app.service.FeedBackService;
 @RestController
 
 @RequestMapping("/feedback")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class FeedBackController {
 
     @Autowired
     private FeedBackService feedbackService;
+    @GetMapping
+	public List<FeedResDTO> listAllfeedback() {
+		System.out.println("in list all passenger");
+		return feedbackService.getAllFeedback();
+	}
 
     @PostMapping
     public ResponseEntity<FeedbackDTO> createFeedback(@RequestBody @Valid FeedbackDTO dto) {
@@ -53,7 +62,7 @@ public ResponseEntity<?> updateFeedback(@PathVariable Long Id,
 				System.out.println("in delete feedback " +id);		
 				return ResponseEntity.ok(feedbackService.deleteFeedback(id ));
 			
-	
+				
 }
 
 }

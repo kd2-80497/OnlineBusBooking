@@ -3,15 +3,10 @@ package com.app.dto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,11 +15,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class BusDto {
-	
-	@JsonProperty // used during serialization
-	private Long id;
-	
+public class AddBusDTO {
 	@NotBlank
 	private String busNo;
 	
@@ -45,9 +36,5 @@ public class BusDto {
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") 
 	private LocalDateTime arrivalTime;
 	
-	@NotNull
-	private double fare;
-	
-	@NotNull
-	private int availableSeats;
+
 }

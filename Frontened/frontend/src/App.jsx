@@ -12,6 +12,13 @@ import AboutUs from "./pages/AboutUs";
 import { PassengerForm } from "./pages/PassengerForm";
 import Payment from "./pages/Payment";
 import Feedback from "./pages/Feedback";
+import Admin from "./pages/Admin";
+import UsersPage from "./pages/UserPage";
+// import FeedbackList from "./pages/feedbackList";
+import FeedbackList from "./pages/FeedbackList";
+import BusPage from "./pages/BusPage";
+
+
 function App() {
   return (
     <div className="container-fluid">
@@ -29,6 +36,10 @@ function App() {
     <Route  path='/contact' element={<ContactUs/>}   />
     <Route  path='/aboutus' element={<AboutUs/>}   />
     <Route  path='/passenger' element={<PassengerForm/>}   />
+    <Route  path='/admin' element={<Admin/>}   />
+    <Route path="/UsersPage" element={<UsersPage />} />
+    <Route path="/FeedbackList" element={< FeedbackList/>} />
+    <Route path="/BusPage" element={<BusPage />} />
    </Routes>
    <ToastContainer />
     </div>

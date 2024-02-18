@@ -1,0 +1,28 @@
+.feed {
+    background-image: url('../assests/feedback.jpg'); /* Background image path */
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the background image */
+    height: 100vh; /* Set height to fill the viewport */
+    display: flex; /* For centering content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+
+  .feed h1 {
+    color: white; /* Text color */
+    /* text-align: right; Center text horizontally */
+  }
+
+  .user {
+    background-image: url('../assests/user.png'); /* Background image path */
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the background image */
+    height: 100vh; /* Set height to fill the viewport */
+    display: flex; /* For centering content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  .user h1 {
+    color: rgb(10, 10, 10); /* Text color */
+    /* text-align: right; Center text horizontally */
+  }

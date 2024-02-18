@@ -53,7 +53,8 @@ public class Bus extends BaseEntity {
 	@Column(name="available_seats")
 	private int availableSeats;
 	
-	
+	@Column(length=30)
+	private String serviceStatus;
 	
     @ElementCollection
     @CollectionTable(name="passengers_list",joinColumns = @JoinColumn(name="bus_id"))
