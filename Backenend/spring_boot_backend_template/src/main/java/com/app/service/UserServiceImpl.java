@@ -21,6 +21,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private OtpService otpservice;
+	
 	@Autowired
 	private UserDao userDao;
 	

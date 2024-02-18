@@ -34,6 +34,7 @@ public class BusController {
 	
     //1.add new Bus 
 	//http://host:port/bus  , method = post
+	
 	@PostMapping
 	public ResponseEntity<?> addNewBus(@RequestBody @Valid BusDto dto){
 		System.out.println("in add Bus " + dto);
@@ -78,6 +79,7 @@ public class BusController {
 	
 	//4. update existing  Bus
 			// http://host:port/bus/{bustId}
+	
 			@PutMapping("/{busId}")
 			public ResponseEntity<?> updateBus(@PathVariable Long busId,
 					@RequestBody @Valid BusDto bus) {
@@ -93,6 +95,8 @@ public class BusController {
 			public ResponseEntity<?> deleteBus(@PathVariable Long busId) {
 				System.out.println("in delete dept " +busId);		
 				return ResponseEntity.ok(busService.deleteBus(busId ));
+				
+			
 			
 	
 }
