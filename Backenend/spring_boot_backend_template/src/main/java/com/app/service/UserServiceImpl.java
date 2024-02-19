@@ -7,12 +7,12 @@ import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_exceptions.ResourceNotFoundException;
 import com.app.dao.UserDao;
-import com.app.dto.ApiResponse;
 import com.app.dto.SignUpRequest;
 import com.app.dto.SignUpResponse;
 import com.app.dto.SigninRequest;
@@ -36,6 +36,8 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 	
 	@Autowired
+	private PasswordEncoder encoder;
+	@Autowired
 	private ModelMapper mapper;
 
 	@Override
@@ -54,6 +56,7 @@ public class UserServiceImpl implements UserService {
 		
 		User user = userDao.save(mapper.map(dto,User.class));
 		user.setRole("customer");
+		user.setPassword(encoder.encode(dto.getPassword()));
 		return new SignUpResponse("registration sucessfully");
 	}
 

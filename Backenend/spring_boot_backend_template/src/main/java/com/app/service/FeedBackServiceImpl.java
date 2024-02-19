@@ -37,21 +37,34 @@ public class FeedBackServiceImpl implements FeedBackService {
 	@Autowired
 	private ModelMapper mapper;
 
+//	@Override
+//	public FeedbackDTO saveFeedback(@Valid FeedbackDTO dto) {
+//Bus bus = busDao.findById(dto.getBusid()).orElseThrow(() -> new ResourceNotFoundException("Invalid Bus Id !!!!"));
+//
+//		FeedBack feedback = mapper.map(dto, FeedBack.class);
+// bus = busDao.findById(dto.getBusid()).orElseThrow();
+//		Passenger passenger = passengerDao.findById(dto.getPassengerid()).orElseThrow();
+//		feedback.setBus(bus);
+//		feedback.setPassenger(passenger);
+//		FeedBack persistenceFeedBack = feedBackDao.save(feedback);
+//		FeedbackDTO feedBackDto=new FeedbackDTO();
+//		feedBackDto.setBusid(persistenceFeedBack.getBus().getId());
+//		feedBackDto.setPassengerid(persistenceFeedBack.getPassenger().getId());
+//		feedBackDto.setFeedBack(persistenceFeedBack.getFeedBack());
+//		System.out.println(feedBackDto.getBusid());
+//		return feedBackDto;
+//	}
+//	
 	@Override
 	public FeedbackDTO saveFeedback(@Valid FeedbackDTO dto) {
-//	Bus bus = busDao.findById(dto.getBusid()).orElseThrow(() -> new ResourceNotFoundException("Invalid Bus Id !!!!"));
-
-		FeedBack feedback = mapper.map(dto, FeedBack.class);
-		Bus bus = busDao.findById(dto.getBusid()).orElseThrow();
-		Passenger passenger = passengerDao.findById(dto.getPassengerid()).orElseThrow();
-		feedback.setBus(bus);
-		feedback.setPassenger(passenger);
-		FeedBack persistenceFeedBack = feedBackDao.save(feedback);
-		FeedbackDTO feedBackDto=new FeedbackDTO();
-		feedBackDto.setBusid(persistenceFeedBack.getBus().getId());
-		feedBackDto.setPassengerid(persistenceFeedBack.getPassenger().getId());
-		feedBackDto.setFeedBack(persistenceFeedBack.getFeedBack());
-		return feedBackDto;
+	    FeedBack feedback = mapper.map(dto, FeedBack.class);
+	    Bus bus = busDao.findById(dto.getBusid()).orElseThrow(() -> new ResourceNotFoundException("Invalid Bus Id !!!!"));
+	    Passenger passenger = passengerDao.findById(dto.getPassengerid()).orElseThrow(() -> new ResourceNotFoundException("Invalid Passenger Id !!!!"));
+	    feedback.setBus(bus);
+	    feedback.setPassenger(passenger);
+	    FeedBack persistenceFeedBack = feedBackDao.save(feedback);
+	    FeedbackDTO feedBackDto = mapper.map(persistenceFeedBack, FeedbackDTO.class);
+	    return feedBackDto;
 	}
 
 	@Override

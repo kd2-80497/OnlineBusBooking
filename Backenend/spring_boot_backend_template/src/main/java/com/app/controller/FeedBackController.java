@@ -33,11 +33,12 @@ public class FeedBackController {
 	}
 
     @PostMapping
-    public ResponseEntity<FeedbackDTO> createFeedback(@RequestBody @Valid FeedbackDTO dto) {
+    public ResponseEntity<String> createFeedback(@RequestBody @Valid FeedbackDTO dto) {
     	System.out.println(FeedBack.class);
 //        FeedbackDTO createFeedback=feedbackService.saveFeedback(dto);
-//        return new ResponseEntity<>(createFeedback,HttpStatus.CREATED);
-        return ResponseEntity.status(HttpStatus.CREATED).body(feedbackService.saveFeedback(dto));
+//        return new ResponseEntity<>(cre;ateFeedback,HttpStatus.CREATED);
+    	feedbackService.saveFeedback(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body("feedbackcreated");
     }
 
 
@@ -55,7 +56,6 @@ public ResponseEntity<?> updateFeedback(@PathVariable Long Id,
 
 
 }
-
 
 			@DeleteMapping("/{id}")
 			public ResponseEntity<?> deleteFeedback(@PathVariable Long id) {
