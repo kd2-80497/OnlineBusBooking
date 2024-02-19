@@ -11,10 +11,11 @@ function InputForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className='container d-flex  justify-content-center p-5 '>
+    <form onSubmit={handleSubmit} className='form'>
       <label>
         Source:
-        <input
+        <input className='form-control mb-3'
           type="text"
           value={source}
           onChange={(event) => setSource(event.target.value)}
@@ -23,15 +24,16 @@ function InputForm({ onSubmit }) {
       <br />
       <label>
         Destination:
-        <input
+        <input className='form-control mb-3 '
           type="text"
           value={destination}
           onChange={(event) => setDestination(event.target.value)}
         />
       </label>
       <br />
-      <button type="submit">Submit</button>
+      <button className="btn btn-primary" type="submit">Search</button>
     </form>
+    </div>
   );
 }
 

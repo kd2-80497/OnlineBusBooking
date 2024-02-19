@@ -12,7 +12,7 @@ export function Navbar(){
     <nav className="navbar navbar-expand-lg bg-body-tertiary bg-primary" data-bs-theme="dark"> 
   <div className="container-fluid">
    <a className='navbar-brand' href="#">
-   <img src={photo} alt="Yatri" width="100" height="100" />
+   <img src={photo} alt="Yatri" width="300" height="100" />
 </a>
     
     <div className="collapse navbar-collapse" id="navbarSupportedContent">

@@ -115,6 +115,7 @@ public class PaymentServiceImpl implements PaymentService{
 		Payment p = paymentDao.save(mapper.map(dto, Payment.class));
 		p.setPaymentDate(LocalDate.now());
 		p.setPaymentStatus(true);
+		
 		p.setUser(userDao.findById(dto.getUserid()).orElseThrow(()->new ResourceNotFoundException("Invalid id")));
 		return mapper.map(p, PaymentDto.class);
 	}

@@ -24,9 +24,14 @@ import com.app.entities.User;
 @Transactional
 public class UserServiceImpl implements UserService {
 	
+
 	@Autowired
 	private OtpService otpservice;
 	
+
+//	@Autowired
+//	private OtpService otpservice;
+
 	@Autowired
 	private UserDao userDao;
 	
@@ -39,8 +44,8 @@ public class UserServiceImpl implements UserService {
 //	User user = userDao.findByEmailAndPassword(reqDTO.getEmail(),reqDTO.getPassword()).orElseThrow();
 	User user=userDao.findByEmailAndPassword(reqDTO.getEmail(),reqDTO.getPassword());
 	//	User user=userDao.findByEmailAndPassword(null, null)
-		//return  mapper.map(user,SigninResponse.class);
-	return new SigninResponse();
+		return  mapper.map(user,SigninResponse.class);
+	
 }
 
 	@Override
@@ -56,6 +61,7 @@ public class UserServiceImpl implements UserService {
     public User findUserByEmail(String email) {
         return userDao.findByEmail(email);
     }
+
 
     public String generateAndSendOTP(String email) {
         User user = userDao.findByEmail(email);
@@ -86,4 +92,15 @@ public class UserServiceImpl implements UserService {
 			throw new ResourceNotFoundException("User details can't be deleted : Invalid Emp Id!!!");
 		
 	}
+
+//    public String generateAndSendOTP(String email) {
+//        User user = userDao.findByEmail(email);
+//        if (user != null) {
+//            String otp = otpservice.generateAndSendOTP(email);
+//            return otp;
+//        } else {
+//            throw new RuntimeException("User not found");
+//        }
+//    }
+
 }
