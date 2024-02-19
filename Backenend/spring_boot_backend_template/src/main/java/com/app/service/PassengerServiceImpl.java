@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -33,9 +34,13 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public List<Passenger> getAllPassengers() {
-        return passengerRepository.findAll();
-    }
+	public List<PasRespDTO> getAllPassengers() {
+		// TODO Auto-generated method stub
+		return passengerRepository.findAll() // List<Passenger>
+				.stream() // Stream<Passenger>
+				.map(pas -> mapper.map(pas, PasRespDTO.class)) // Stream<DTO>
+				.collect(Collectors.toList());// List<DTO>
+	}
 
 //    @Override
 //    public Passenger getPassengerById(Long id) {
