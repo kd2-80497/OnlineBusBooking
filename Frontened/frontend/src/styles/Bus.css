@@ -1,5 +1,5 @@
 .bus1 {
-    background-image: url('../assests/1.jpg'); /* Background image path */
+    background-image: url('../assets/1.jpg'); /* Background image path */
     background-size: cover; /* Cover the entire container */
     background-position: center; /* Center the background image */
     height: 100vh; /* Set height to fill the viewport */

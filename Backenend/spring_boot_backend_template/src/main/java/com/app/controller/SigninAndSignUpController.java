@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.AuthenticateSigin;
 import com.app.dto.SignUpRequest;
 import com.app.dto.SigninRequest;
 import com.app.dto.SigninResponse;
@@ -46,6 +47,6 @@ public class SigninAndSignUpController {
         Authentication verifiedAuth = mgr.authenticate(new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
         System.out.println(verifiedAuth.getClass());// Custom user details
         // => auth success
-        return ResponseEntity.ok(new SigninResponse(utils.generateJwtToken(verifiedAuth), "Successful Authentication!!!"));
+        return ResponseEntity.ok(new AuthenticateSigin(utils.generateJwtToken(verifiedAuth), "Successful Authentication!!!"));
     }
 }

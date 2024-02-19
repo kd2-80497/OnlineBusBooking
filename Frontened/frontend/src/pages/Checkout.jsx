@@ -1,6 +1,6 @@
 import { CLIENT_ID } from "../config";
 import React, { useState, useEffect } from "react";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import axios from "axios";

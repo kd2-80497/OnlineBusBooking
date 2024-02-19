@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,6 +13,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
 public class SigninRequest {
 	
 	@NotBlank(message = "Email can't be blank")
@@ -20,6 +22,8 @@ public class SigninRequest {
 	@NotBlank(message = "password can't be blank")
 	@Length(min = 5,max=20,message = "Invalid password length")
 	private String password;
+	
+	
 	
 
 
