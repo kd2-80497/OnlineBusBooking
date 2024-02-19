@@ -12,10 +12,14 @@ import AboutUs from "./pages/AboutUs";
 import { PassengerForm } from "./pages/PassengerForm";
 import Payment from "./pages/Payment";
 import Feedback from "./pages/Feedback";
+import ConfirmBooking from "./pages/ConfirmBooking";
+import Checkout from "./pages/Checkout";
+
+
 function App() {
   return (
     <div className="container-fluid">
-   <Routes>
+   <Routes>  
     <Route  index element={<Signin/>}   />
     <Route  path='/' element={<Signin/>}   />
     <Route  path='/signup' element={<Signup/>}   />
@@ -27,8 +31,11 @@ function App() {
     <Route  path='/payment' element={<Payment/>}   />
     <Route  path='/feedback' element={<Feedback/>}   />
     <Route  path='/contact' element={<ContactUs/>}   />
-    <Route  path='/aboutus' element={<AboutUs/>}   />
+    <Route  path='/about' element={<AboutUs/>}   />
     <Route  path='/passenger' element={<PassengerForm/>}   />
+  <Route  path='/confirmBooking' element={<ConfirmBooking/>}   />
+  <Route   path='/checkout' element={<Checkout/>}/>
+  
    </Routes>
    <ToastContainer />
     </div>

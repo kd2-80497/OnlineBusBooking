@@ -5,5 +5,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SigninResponse {
-	private String mess;
+	private Long id;
+	private String firstName;
+	
+	private String lastName;
+	private String email;
+	
+	private String password;
+	private String phoneNumber;
+	private String role;
 }

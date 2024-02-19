@@ -22,6 +22,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -63,7 +65,8 @@ public class Booking  extends BaseEntity{
 	@JoinColumn(name="payment_id")
 	private Payment payment; 
 
-	@OneToMany(mappedBy = "booking",cascade = CascadeType.ALL,orphanRemoval = true)
+	@JsonIgnore
+	@OneToMany(mappedBy = "booking",cascade = CascadeType.ALL)
 	private List<Passenger> passengerList= new ArrayList<Passenger>();
 
 	public Booking(int noOfSeats, boolean bookingStatus, boolean paymentStatus, LocalDate bookingDate, BusType type) {

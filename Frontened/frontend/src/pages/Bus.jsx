@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { getAllSource } from "../services/city";
 import Navbar from "../components/Navbar";
-import CitySelector from "../components/CitySelector";
-import Destination from "../components/Destination";
+
+
 import InputForm from "../components/InpuForm";
 import BusDetails from "../components/BusDetails";
 export function Bus(){
@@ -21,8 +21,8 @@ export function Bus(){
         <div className="container">
 
 
-        <div>
-      <h1>Bus Information</h1>
+        <div className="d-flex  flex-column align-items-center">
+      <h1  className="m-7">Bus Information</h1>
       <InputForm onSubmit={handleSubmit} />
       {source && destination && (
         <BusDetails source={source} destination={destination} />

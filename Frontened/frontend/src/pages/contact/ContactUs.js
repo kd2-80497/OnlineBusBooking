@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer ,toast } from "react-toastify";
+import Navbar from '../../components/Navbar';
 
 function ContactUs() {
 
@@ -11,13 +12,16 @@ const HandleEvent=()=>{
 }
 
   const navigate = useNavigate();
-  return (
+  return (<>
+    <Navbar/>
     <div className='backimage'>
       <br/>
-    <div className="contact-us container  justify-content-center" style={{marginTop:"200px"}}>
+    <div className="contact-us container  justify-content-center" style={{marginTop:"30px",marginBottom:"30px"}}>
+    <h1 style={{ }} className='text-center'>Contact Us</h1>
       <div className="row">
         <div className="col-lg-6 col-md-6 col-sm-12 ">
-          <h1 style={{ }}>Contact Us</h1>
+
+          
           <p>
             Have a question, suggestion, or just want to say hello? Feel free to reach out to us using the contact form below, or through our other contact information.
           </p>
@@ -74,6 +78,7 @@ const HandleEvent=()=>{
     </div>
     <br/><br/><br/><br/>
     </div>
+    </>
   );
 }
 
