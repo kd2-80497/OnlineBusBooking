@@ -75,7 +75,7 @@ import com.app.service.PaymentService;
 
 @RestController
 @RequestMapping("/passenger")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class PassengerController {
 	// dep :
 	@Autowired // (required = true)
@@ -91,8 +91,8 @@ public class PassengerController {
 
 	
 	@GetMapping
-	public List<Passenger> listAllPassenger() {
-		System.out.println("in list all emps");
+	public List<PasRespDTO> listAllPassenger() {
+		System.out.println("in list all passenger");
 		return pasService.getAllPassengers();
 	}
 
@@ -105,7 +105,7 @@ public class PassengerController {
 	
 	
 	
-	// URL : http://localhost:8080/employees/empId
+	// URL : http://localhost:8080/passenger/bookingId
 	// Method : GET
 	// resp : detached pas or exc
 	 @GetMapping("/{bookingId}")

@@ -7,7 +7,7 @@ export function Home(){
     const navigate = useNavigate();
     const handleClick = () => {
         console.log('Button clicked!');
-        navigate('/booking')
+        navigate('/bus')
       };
 
     return (<>
@@ -15,9 +15,10 @@ export function Home(){
     <div className="home">
     <div className="container">
        
-    <h1 className='title' class="text-xxl-end">WELCOME TO YATRI</h1>
-    <button onClick={handleClick} className="btn btn-secondary btn-sm z-3 position-absolute p-5 rounded-3" style={{ display: 'flex', justifyContent: 'flex-end' }} >Book Ticket</button>
-   
+    <h1 className='title' class="text-xxl-start">WELCOME TO YATRI</h1>
+    <div className="d-flex justify-content-start">
+    <button onClick={handleClick} className="btn btn-dark btn-sm z-3 position-absolute p-3 rounded-3 mx-3  " >Book Ticket</button>
+   </div>
     </div>
     
     </div>

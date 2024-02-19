@@ -14,4 +14,19 @@ public class SigninResponse {
 //	}
     private String jwt;
 	private String mess;
+
+	private Long id;
+	private String firstName;
+	
+	private String lastName;
+	private String email;
+	
+	private String password;
+	private String phoneNumber;
+	private String role;
+
+	
+	public SigninResponse(String jwt , String mess) {
+		
+	}
 }

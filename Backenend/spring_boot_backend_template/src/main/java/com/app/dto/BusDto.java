@@ -13,16 +13,21 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class BusDto {
 	
-	@JsonProperty(access = Access.READ_ONLY) // used during serialization
+	@JsonProperty // used during serialization
 	private Long id;
 	
 	@NotBlank
@@ -50,4 +55,17 @@ public class BusDto {
 	
 	@NotNull
 	private int availableSeats;
+
+	public BusDto(Long id, @NotBlank String source, @NotBlank String destination, LocalDate travelDate,
+			LocalDateTime departureTime, LocalDateTime arrivalTime) {
+		super();
+		this.id = id;
+		this.source = source;
+		this.destination = destination;
+		this.travelDate = travelDate;
+		this.departureTime = departureTime;
+		this.arrivalTime = arrivalTime;
+	}
+	
+	
 }

@@ -5,6 +5,7 @@ import com.app.dao.BookingDao;
 import com.app.dao.PassengerDao;
 import com.app.dto.AddPasDTO;
 import com.app.dto.PasRespDTO;
+import com.app.entities.Booking;
 import com.app.entities.Passenger;
 
 import org.modelmapper.ModelMapper;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -32,9 +34,13 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public List<Passenger> getAllPassengers() {
-        return passengerRepository.findAll();
-    }
+	public List<PasRespDTO> getAllPassengers() {
+		// TODO Auto-generated method stub
+		return passengerRepository.findAll() // List<Passenger>
+				.stream() // Stream<Passenger>
+				.map(pas -> mapper.map(pas, PasRespDTO.class)) // Stream<DTO>
+				.collect(Collectors.toList());// List<DTO>
+	}
 
 //    @Override
 //    public Passenger getPassengerById(Long id) {
@@ -55,6 +61,10 @@ public class PassengerServiceImpl implements PassengerService {
 		// 2. map emp dto --> entity
 		Passenger emp = mapper.map(newPas, Passenger.class);
 		//dept.addEmployee(emp);
+		
+		
+		Booking booking=bookingDao.findById(newPas.getBookId()).orElseThrow(null);
+		emp.setBooking(booking);
 		Passenger persistentPassenger=passengerRepository.save(emp);// Since want to send generated emp id to the REST clnt : saved it explicitly!
 		
 		persistentPassenger.setBooking(bookingDao.findById(newPas.getBookId()).orElseThrow(()->new ResourceNotFoundException("Invalid Booking id")));

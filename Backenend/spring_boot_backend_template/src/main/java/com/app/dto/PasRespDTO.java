@@ -13,5 +13,5 @@ public class PasRespDTO {
 	private String lastName;
     private String gender;
 	private int age;
-	private int seatNumber;
+private int seatNumber;
 }

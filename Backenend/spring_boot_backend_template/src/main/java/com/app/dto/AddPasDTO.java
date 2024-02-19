@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 public class AddPasDTO {
 	@NotNull(message ="Booking Id required!!!!")
-	private Long BookId;
+	private Long bookId;
 	@NotBlank(message = "first name must be supplied!!!")
 	private String firstName;	
 	private String lastName;	
