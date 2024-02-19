@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService {
 //	User user = userDao.findByEmailAndPassword(reqDTO.getEmail(),reqDTO.getPassword()).orElseThrow();
 	User user=userDao.findByEmailAndPassword(reqDTO.getEmail(),reqDTO.getPassword());
 	//	User user=userDao.findByEmailAndPassword(null, null)
-		//return  mapper.map(user,SigninResponse.class);
-	return new SigninResponse();
+		return  mapper.map(user,SigninResponse.class);
+	
 }
 
 	@Override

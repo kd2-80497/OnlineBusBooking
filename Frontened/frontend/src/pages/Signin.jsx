@@ -8,7 +8,7 @@ export function Signin() {
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
-
+debugger;
   const onSignin = async () => {
     if (email.length == 0) {
       toast.warn('enter email')
@@ -17,12 +17,13 @@ export function Signin() {
     } else {
       // make the api call
       const result = await signinUser(email, password)
-      if (result['status'] == 'success') {
+      console.log(result);
+      if (result['status'] != 'error') {
         // cache the token
         // const token = result['data']['token']
         //  sessionStorage['token'] = token
-        sessionStorage.setItem('userid',result.data.id );
-        sessionStorage.setItem('role',result.data.role );
+        sessionStorage.setItem('userid',result.id );
+        sessionStorage.setItem('role',result.role );
         toast.success('Welcome to the busbooking ')
         navigate('/home')
       } else {

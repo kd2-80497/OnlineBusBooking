@@ -36,10 +36,14 @@ import java.util.List;
 //	    }
 	    
 	    
-	    @PostMapping("/initiate")
-	    public  PaymentDto addPayment(@RequestBody PaymentDto dto){
-	    	System.out.println("in add payment"+dto.toString());
-	    	
+	    @GetMapping("/initiate")
+	    public  PaymentDto addPayment(@RequestParam String source,@RequestParam String destination,@RequestParam Long  userid,@RequestParam  double totalPayment   ){
+	    	System.out.println("in add payment"+ source +destination + userid + totalPayment);
+	    	PaymentDto dto = new PaymentDto();
+	    	dto.setSource(source);
+	    	dto.setDestination(destination);
+	    	dto.setTotalPayment(totalPayment);
+	    	dto.setUserid(userid);
 	    	return paymentService.addPayment(dto);
 	    }
 	}

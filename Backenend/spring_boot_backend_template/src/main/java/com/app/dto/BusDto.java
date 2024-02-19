@@ -55,4 +55,17 @@ public class BusDto {
 	
 	@NotNull
 	private int availableSeats;
+
+	public BusDto(Long id, @NotBlank String source, @NotBlank String destination, LocalDate travelDate,
+			LocalDateTime departureTime, LocalDateTime arrivalTime) {
+		super();
+		this.id = id;
+		this.source = source;
+		this.destination = destination;
+		this.travelDate = travelDate;
+		this.departureTime = departureTime;
+		this.arrivalTime = arrivalTime;
+	}
+	
+	
 }
