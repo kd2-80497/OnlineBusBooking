@@ -100,4 +100,9 @@ public class User extends BaseEntity {
 		feedbackList.remove(f);
 		
 	}
+
+	public User orElseThrow(Object object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	}

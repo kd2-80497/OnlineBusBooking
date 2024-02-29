@@ -27,7 +27,7 @@ import { forgotPassword } from '../services/user'
       />
      </div>
       <div className="mb-3">
-        <button className="btn btn-primary" onClick={handleForgotPassword}>Reset Password</button>>
+        <button className="btn btn-primary" onClick={handleForgotPassword}>Reset Password</button>
     </div>
     </div>
   );

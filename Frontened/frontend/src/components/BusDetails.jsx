@@ -13,7 +13,7 @@ function BusDetails({ source, destination }) {
   useEffect(() => {
     const fetchBusDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/bus?source=${source}&destination=${destination}`);
+        const response = await axios.get(`http://localhost:8444/bus?source=${source}&destination=${destination}`);
       
       // const busesArray = Object.values(response.data);
        setBuses(response.data);

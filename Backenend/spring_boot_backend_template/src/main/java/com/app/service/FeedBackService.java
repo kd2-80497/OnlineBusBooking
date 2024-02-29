@@ -1,8 +1,11 @@
 package com.app.service;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import com.app.dto.ApiResponse;
+import com.app.dto.FeedResDTO;
 import com.app.dto.FeedbackDTO;
 import com.app.entities.FeedBack;
 
@@ -19,4 +22,6 @@ public interface FeedBackService {
 	//ApiResponse deleteBus(Long busId);
 
 	ApiResponse deleteFeedback(Long id);
+
+	List<FeedResDTO> getAllFeedback();
 }

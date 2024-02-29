@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+
 import { signinUser } from '../services/user'
+import axios from 'axios'
 
 export function Signin() {
+ 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
-debugger;
+  debugger;
   const onSignin = async () => {
     if (email.length == 0) {
       toast.warn('enter email')
@@ -16,19 +19,36 @@ debugger;
       toast.warn('enter password')
     } else {
       // make the api call
+      
       const result = await signinUser(email, password)
-      console.log(result);
+      console.log("resULT"+result);
       if (result['status'] != 'error') {
         // cache the token
-        // const token = result['data']['token']
-        //  sessionStorage['token'] = token
-        sessionStorage.setItem('userid',result.id );
-        sessionStorage.setItem('role',result.role );
-        toast.success('Welcome to the busbooking ')
-        navigate('/home')
-      } else {
+        const token = result.data.token;
+   console.log(token);
+
+      
+
+            sessionStorage.setItem("jwtToken", token);
+            sessionStorage.setItem('userid', result.id);
+            sessionStorage.setItem('role', result.role);
+
+            toast.success('Welcome to Yatri')
+            navigate('/home')
+
+
+          }
+
+       
+        
+
+
+
+
+       else {
         toast.error(result['error'])
       }
+
     }
   }
 

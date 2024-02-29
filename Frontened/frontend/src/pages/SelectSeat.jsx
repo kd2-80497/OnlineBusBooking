@@ -14,7 +14,7 @@ const SelectSeat = () => {
   const selectedBus = JSON.parse(sessionStorage.getItem("selectedBus"));
   // console.log(selectedBus);
 
-  const BASE_URL = "http://localhost:8080";
+  const BASE_URL = "http://localhost:8444";
   const handleBook = async (event) => {
 
     const fetchedUserId = sessionStorage.getItem("userid");

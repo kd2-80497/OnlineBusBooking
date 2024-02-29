@@ -28,7 +28,7 @@ export function Navbar(){
           <Link className="nav-link active" aria-current="page" to="/contact">Contact US</Link>
           </li>
           <li>
-          <button onClick={onLogout} className="nav-link active" aria-current="page" >Logout</button>
+          <button onClick={onLogout} className="nav-link active" aria-current="page" >Login</button>
         </li>
         
        
