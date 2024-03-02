@@ -1,46 +1,16 @@
-import { submitfeedback } from '../services/feedback'
+
 import { useState } from "react";
 
-  function Feedback() {
+ export function Feedback() {
   const [feedback, setFeedback] = useState("");
-  const [passengerid, setPassengerId] = useState("");
-  const [busid, setBusId] = useState("");
-   
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   console.log("Form submitted:", { feedback, passengerId, busId });
-  //   // You can add further logic to send the feedback data to your backend/API here
-  // };;
+  const [passengerId, setPassengerId] = useState("");
+  const [busId, setBusId] = useState("");
 
-
-  // function Payment() {
-  //   const [source, setSource] = useState('');
-  //   const [destination, setDestination] = useState('');
-  //   const [paymentStatus, setPaymentStatus] = useState(false);
-  //   const [paymentDate, setPaymentDate] = useState('');
-  //   const [totalPayment, setTotalPayment] = useState(0);
-    
-  
-  const feedbackObject={
-    
-      feedBack: feedback,
-      passengerid: passengerid,
-      busid: busid
-    };
-
-    
-      const handleSubmit = (event) => {
-
-        event.preventDefault();
-        console.log("Form submitted:",feedbackObject);
-        submitfeedback(feedbackObject).then((response)=>{
-          console.log(response.data);
-        }).catch((err)=>{
-          console.log(err.data);
-          
-        })
-      };
-        
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Form submitted:", { feedback, passengerId, busId });
+    // You can add further logic to send the feedback data to your backend/API here
+  };
 
   return (
     <div className="container">
@@ -59,14 +29,14 @@ import { useState } from "react";
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="passengerid" className="form-label">
-            passengerid:
+          <label htmlFor="passengerId" className="form-label">
+            Passenger ID:
           </label>
           <input
             type="number"
             className="form-control"
             id="passengerId"
-            value={passengerid}
+            value={passengerId}
             onChange={(e) => setPassengerId(e.target.value)}
             required
           />
@@ -79,7 +49,7 @@ import { useState } from "react";
             type="number"
             className="form-control"
             id="busId"
-            value={busid}
+            value={busId}
             onChange={(e) => setBusId(e.target.value)}
             required
           />
@@ -298,3 +268,5 @@ export default Feedback;
 //     </>)
 
 // }
+
+// export default Signup ;

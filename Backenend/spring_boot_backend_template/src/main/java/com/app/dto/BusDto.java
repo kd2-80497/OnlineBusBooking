@@ -27,7 +27,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class BusDto {
 	
-	@JsonProperty // used during serialization
+	@JsonProperty(access = Access.READ_ONLY) // used during serialization
 	private Long id;
 	
 	@NotBlank

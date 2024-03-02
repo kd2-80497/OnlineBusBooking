@@ -2,7 +2,6 @@ package com.app.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,11 +19,11 @@ public class FeedBack extends BaseEntity {
 	@Column(length = 30)
 	private String feedBack;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "passenger_id")
 	private Passenger passenger;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "bus_id")
 	private Bus bus;
 

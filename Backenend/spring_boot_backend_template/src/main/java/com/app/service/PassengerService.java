@@ -10,7 +10,7 @@ import javax.validation.Valid;
 
 public interface PassengerService {
 
-    List<PasRespDTO> getAllPassengers();
+    List<Passenger> getAllPassengers();
 
    // Passenger getPassegetPassengerByBookingIdngerById(Long id);
     public Passenger getPassengerByBookingId(Long bookingId);

@@ -91,8 +91,8 @@ public class PassengerController {
 
 	
 	@GetMapping
-	public List<PasRespDTO> listAllPassenger() {
-		System.out.println("in list all passenger");
+	public List<Passenger> listAllPassenger() {
+		System.out.println("in list all emps");
 		return pasService.getAllPassengers();
 	}
 
@@ -105,7 +105,7 @@ public class PassengerController {
 	
 	
 	
-	// URL : http://localhost:8080/passenger/bookingId
+	// URL : http://localhost:8080/employees/empId
 	// Method : GET
 	// resp : detached pas or exc
 	 @GetMapping("/{bookingId}")

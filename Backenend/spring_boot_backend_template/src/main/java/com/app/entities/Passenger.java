@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name="passenger")
@@ -23,7 +22,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 public class Passenger extends BaseEntity {
 	
 	@Column(length=30)
@@ -40,7 +38,7 @@ public class Passenger extends BaseEntity {
 	
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="booking_id")
 	private Booking booking;
 	

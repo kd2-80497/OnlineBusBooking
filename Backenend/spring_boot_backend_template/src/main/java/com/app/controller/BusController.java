@@ -17,43 +17,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
-
-import com.app.dto.AddBusDTO;
 import com.app.dto.BusDto;
-import com.app.dto.UserResponseDTO;
 import com.app.entities.Bus;
 import com.app.service.BusService;
 
 @RestController
 @RequestMapping("/bus")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins="http://localhost:3000")
 public class BusController {
 	
 
 	@Autowired
 	private BusService busService;
 	
-	@GetMapping
-	public List<BusDto> listAllBuses() {
-		System.out.println("in list all buses");
-		return busService.getAllBus();
-	}
+
 	
     //1.add new Bus 
 	//http://host:port/bus  , method = post
-	
-//	@PostMapping
-//	public ResponseEntity<?> addNewBus(@RequestBody @Valid BusDto dto){
-//		System.out.println("in add Bus " + dto);
-//		
-//		return ResponseEntity.status(HttpStatus.CREATED).body(busService.addNewBus(dto));
-//	}
 	@PostMapping
-	public ResponseEntity<?> addNewBus(@RequestBody @Valid AddBusDTO dto){
+	public ResponseEntity<?> addNewBus(@RequestBody @Valid BusDto dto){
 		System.out.println("in add Bus " + dto);
-		
-		return ResponseEntity.status(HttpStatus.CREATED).body(busService.addBusDetails(dto));
+		return ResponseEntity.status(HttpStatus.CREATED).body(busService.addNewBus(dto));
 	}
+	
 	
 //	@GetMapping("/source")
 //	public List<String> getBusSource(){
@@ -84,7 +70,7 @@ public class BusController {
 	
 	//3.get  buses by source and destination
 	//http://host:port/bus  , method =get
-	@GetMapping("/bus/details")
+	@GetMapping
 	public ResponseEntity<List<BusDto>> getBusDetailsBySourceAndDestination(@RequestParam("source") String source,@RequestParam("destination") String destination  ){
 		System.out.println("in get Bus by source and destination " + source + destination );
 		return ResponseEntity.ok(busService.getBusDetailsBySourceAndDestination(source,destination));
@@ -92,11 +78,9 @@ public class BusController {
 	
 	//4. update existing  Bus
 			// http://host:port/bus/{bustId}
-	
 			@PutMapping("/{busId}")
 			public ResponseEntity<?> updateBus(@PathVariable Long busId,
 					@RequestBody @Valid BusDto bus) {
-				
 				System.out.println("in update dept " +busId+" "+ bus);		
 				return ResponseEntity.ok(busService.updateBus(busId , bus));
 			
@@ -109,8 +93,6 @@ public class BusController {
 			public ResponseEntity<?> deleteBus(@PathVariable Long busId) {
 				System.out.println("in delete dept " +busId);		
 				return ResponseEntity.ok(busService.deleteBus(busId ));
-				
-			
 			
 	
 }

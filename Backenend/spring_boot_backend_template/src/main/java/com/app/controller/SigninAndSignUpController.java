@@ -6,9 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,35 +14,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.SignUpRequest;
 import com.app.dto.SigninRequest;
-import com.app.dto.SigninResponse;
-import com.app.security.JwtUtils;
+import com.app.entities.User;
 import com.app.service.UserService;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins="http://localhost:3000")
-public class SigninAndSignUpController {
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private JwtUtils utils;
-    @Autowired
-    private AuthenticationManager mgr;
+@CrossOrigin(origins = "*")
+public class  SigninAndSignUpController {
+	@Autowired
+ private UserService userService;
+	Random random = new Random(10000);
+	@PostMapping("/signin")
+	public ResponseEntity<?> signinUser(@RequestBody @Valid SigninRequest dto){
+		System.out.println("in auth user "+ dto);
+		return ResponseEntity.ok(userService.userSignIn(dto));
+	}
+	
+	@PostMapping("/signup")
+	public ResponseEntity<?> signupUser(@RequestBody @Valid SignUpRequest dto){
+		System.out.println("in auth user "+ dto);
+		return ResponseEntity.ok(userService.userRegistration(dto));
+	}
 
-    Random random = new Random(10000);
-
-    @PostMapping("/signup")
-    public ResponseEntity<?> signinUser(@RequestBody @Valid SignUpRequest dto) {
-        System.out.println("in auth user " + dto);
-        return ResponseEntity.ok(userService.userRegistration(dto));
-    }
-
-    @PostMapping("/signin")
-    public ResponseEntity<?> signupUser(@RequestBody @Valid SigninRequest dto) {
-        System.out.println("in auth user " + dto);
-        Authentication verifiedAuth = mgr.authenticate(new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
-        System.out.println(verifiedAuth.getClass());// Custom user details
-        // => auth success
-        return ResponseEntity.ok(new SigninResponse(utils.generateJwtToken(verifiedAuth), "Successful Authentication!!!"));
-    }
 }

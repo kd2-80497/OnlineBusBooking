@@ -145,42 +145,6 @@ console.log("booking"+ bookingId);
   };
 
 
-
-// export function PassengerForm(){
-   
-//     const[firstName,setFirstName]=useState('');
-//     const[lastName,setLastName]=useState('');
-//     const[gender,setGender]=useState('');
-//     const[age,setAge]=useState('');
-//     const[seatNumber,setSeatNumber]=useState('');
-//    // const navigate = useNavigate();
-//     const  handleSubmit=async()=>{
-      
-//         if (firstName.length === 0) {
-//             toast.warn('enter first name')
-//           } else if (lastName.length === 0) {
-//             toast.warn('enter last name')
-//           } else if (gender.length === 0  ) {
-//             toast.warn('enter gender')
-//           } else if (age.length === 0) {
-//             toast.warn('enter age')
-//           } else if (seatNumber.length === 0) {
-//             toast.warn('enter seatNumber')
-//           } 
-//           else{
-//             const result = await passenger(firstName,lastName,gender,age,seatNumber)
-            
-//             if(result.status ==="success"){
-//                 toast.success("Passenger details added successfully")
-//               //  navigate('/')
-//             }
-//             else{
-//                 toast.error(result['error'])
-//             }
-//           }
-//        }
-      
-
   return (
     <>
       <Navbar />
